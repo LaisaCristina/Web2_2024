@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { ItemPedidoComponent } from './item-pedido/item-pedido.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,7 +15,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    PedidoComponent,
+    ItemPedidoComponent
   ],
   imports: [
     BrowserModule,
