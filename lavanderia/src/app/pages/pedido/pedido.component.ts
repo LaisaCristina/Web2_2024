@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
-import { ItemPedidoComponent } from '../item-pedido/item-pedido.component';
+import { ItemPedidoComponent } from '../../item-pedido/item-pedido.component';
 
 @Component({
   selector: 'app-pedido',
