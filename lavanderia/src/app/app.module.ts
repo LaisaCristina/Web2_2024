@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { ItemPedidoComponent } from './item-pedido/item-pedido.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     PedidoComponent,
-    ItemPedidoComponent
+    ItemPedidoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
