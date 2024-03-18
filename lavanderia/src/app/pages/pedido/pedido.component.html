@@ -1,6 +1,10 @@
 <div class="container mt-5">
-    <div #containerItens></div>
-    <button (click)="addPedido()">Adicionar novo item</button>
-    <button (click)="addPedido()">Voltar</button>
-    <button (click)="addPedido()">Confirmar pedido</button>
+    <div class="row justify-content-center">
+        <button routerLink="/home">Ir para a página inicial</button>
+        <button (click)="addPedido()">Adicionar novo item</button>
+        <form (ngSubmit)="confirmarPedido()">
+            <div #containerItens></div>
+        <button (click)="confirmarPedido()">Confirmar pedido</button>
+        </form>
+    </div>
 </div>
