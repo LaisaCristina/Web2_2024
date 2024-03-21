@@ -1,5 +1,6 @@
 import { Component, ViewContainerRef, ViewChild } from '@angular/core';
 import { ItemPedidoComponent } from './item-pedido/item-pedido.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { ItemPedidoComponent } from './item-pedido/item-pedido.component';
 
 export class PedidoComponent {
   @ViewChild('containerItens', { read: ViewContainerRef }) containerItens!: ViewContainerRef;
+  constructor(private router: Router) {}
 
   addPedido() {
     this.containerItens.createComponent(ItemPedidoComponent);
@@ -23,5 +25,10 @@ export class PedidoComponent {
 
   teste(){
 
+  }
+
+  home() {
+    
+    this.router.navigate(['/home']); 
   }
 }

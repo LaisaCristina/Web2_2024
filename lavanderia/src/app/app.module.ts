@@ -9,6 +9,7 @@ import { PedidoComponent } from './pages/pedido/pedido.component';
 import { ItemPedidoComponent } from './pages/pedido/item-pedido/item-pedido.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
     PedidoComponent,
     ItemPedidoComponent,
     HomeComponent,
-    CadastroComponent
+    CadastroComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
