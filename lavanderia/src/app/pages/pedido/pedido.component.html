@@ -1,7 +1,10 @@
-<app-nav-bar></app-nav-bar>
-<div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 container text-center" >
-    <div #containerItens ></div>
-    <button class="btn btn-secondary m-3" (click)="home()">Voltar</button>
-    <button class="btn btn-primary m-3" (click)="addPedido()">Adicionar novo item</button>
-    <button class="btn btn-success m-3" (click)="addPedido()">Confirmar pedido</button>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <button routerLink="/home">Ir para a página inicial</button>
+        <button (click)="addPedido()">Adicionar novo item</button>
+        <form (ngSubmit)="confirmarPedido()">
+            <div #containerItens></div>
+        <button (click)="confirmarPedido()">Confirmar pedido</button>
+        </form>
+    </div>
 </div>
