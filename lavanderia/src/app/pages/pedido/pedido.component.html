@@ -1,10 +1,14 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <button routerLink="/home">Ir para a página inicial</button>
-        <button (click)="addPedido()">Adicionar novo item</button>
-        <form (ngSubmit)="confirmarPedido()">
+        <div class="row justify-content-center">
+            <div class="d-flex justify-content-between">
+                <button routerLink="/home" class="btn btn-primary">Ir para a página inicial</button>
+                <button (click)="addPedido()" class="btn btn-primary">Adicionar novo item</button>
+                <button (click)="confirmarPedido()" class="btn btn-primary">Confirmar pedido</button>
+            </div>
+        </div>
+        <form (ngSubmit)="teste()">
             <div #containerItens></div>
-        <button (click)="confirmarPedido()">Confirmar pedido</button>
         </form>
     </div>
 </div>

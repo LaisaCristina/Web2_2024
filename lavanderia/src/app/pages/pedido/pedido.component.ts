@@ -12,10 +12,16 @@ export class PedidoComponent {
   @ViewChild('containerItens', { read: ViewContainerRef }) containerItens!: ViewContainerRef;
 
   addPedido() {
-    const componentRef = this.containerItens.createComponent(ItemPedidoComponent);
+    this.containerItens.createComponent(ItemPedidoComponent);
   }
 
   confirmarPedido(){
+    for (let i = 0; i < this.containerItens.length; i++) {
+      console.log(this.containerItens.get(i));
+    }
+  }
+
+  teste(){
 
   }
 }

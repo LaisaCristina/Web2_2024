@@ -1,13 +1,26 @@
-
-<div>
-    <label for="select_menu">Selecione uma roupa:</label>
-    <select id="select_menu" name="select_menu">
-        <option value="opcao1">Opção 1</option>
-        <option value="opcao2">Opção 2</option>
-        <option value="opcao3">Opção 3</option>
-    </select>
-</div>
-<div>
-    <label for="input_field">Numero de roupas:</label>
-    <input type="text" id="input_field" name="input_field" placeholder="Digite algo...">
+<div class="container border border-primary item-pedido">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSExVY287Pej03f2ulRTkBmBtSVc5VO67xY_Xg8eGjEgWbZkIDW_AmaVNnZnml-v8tmDtA&usqp=CAU" alt="">
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="select_menu" class="form-label">Selecione uma roupa:</label>
+                <select id="select_menu" class="form-select" name="select_menu">
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao2">Opção 2</option>
+                    <option value="opcao3">Opção 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="input_field" class="form-label">Número de peças:</label>
+            <div class="form-group d-flex align-items-center">
+                <button class="btn btn-secondary">-</button>
+                <input type="text" id="input_field" name="input_field" class="form-control" placeholder="Digite algo...">
+                <button class="btn btn-secondary">+</button>
+            </div>
+        </div>
+        
+    </div>
 </div>
