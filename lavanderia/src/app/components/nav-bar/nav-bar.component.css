@@ -1,0 +1,3 @@
+.nav-item.active .nav-link {
+    font-weight: bold; /* Por exemplo, tornar o texto mais escuro ou em negrito */
+  }

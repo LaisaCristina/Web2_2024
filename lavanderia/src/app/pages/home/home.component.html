@@ -1,18 +1,11 @@
 <div class="fundo">
-    <nav class="containerMenu">
-        <ul class="menu">
-            <li class="elementoMenu"><a class="hoverMenu" href="#">LoL</a></li>
-            <li class="elementoMenu"><a class="hoverMenu" href="#">PEDIR</a></li>
-            <li class="elementoMenu"><a class="hoverMenu" href="#">LISTAR</a></li>
-            <li class="elementoMenu"><a class="hoverMenu" href="#">CONSULTAR</a></li>
-            <li class="perfil"><img src="../../../assets/perfil.png"></li>
-        </ul>
-    </nav>
+    <app-nav-bar></app-nav-bar>
     <div class="Titulo">
         <h2>
             PEDIDOS EM ABERTO
         </h2>
     </div>
+    <button type="submit" class="btn btn-primary" (click)="pedido()">Novo pedido</button>
     <div class="containerLista">
         <ul class="lista">
             <li class="listaElemento">
