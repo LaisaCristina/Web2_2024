@@ -1,5 +1,6 @@
 import { Component, ViewContainerRef, ViewChild } from '@angular/core';
 import { ItemPedidoComponent } from './item-pedido/item-pedido.component';
+import { NavBarComponent } from 'src/app/components/nav-bar/nav-bar.component';
 import { Router } from '@angular/router';
 
 
