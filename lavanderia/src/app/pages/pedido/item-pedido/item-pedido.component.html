@@ -5,20 +5,20 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="select_menu" class="form-label">Selecione uma roupa:</label>
-                <select id="select_menu" class="form-select" name="select_menu">
-                    <option value="opcao1">Opção 1</option>
-                    <option value="opcao2">Opção 2</option>
-                    <option value="opcao3">Opção 3</option>
+                <label for="itemPedido" class="form-label">Selecione uma roupa:</label>
+                <select id="itemPedido" class="form-select" name="itemPedido">
+                    <option value="id1">Opção 1</option>
+                    <option value="id2">Opção 2</option>
+                    <option value="id2">Opção 3</option>
                 </select>
             </div>
         </div>
         <div class="col-md-6">
-            <label for="input_field" class="form-label">Número de peças:</label>
+            <label for="qtdIten" class="form-label">Número de peças:</label>
             <div class="form-group d-flex align-items-center">
-                <button class="btn btn-secondary">-</button>
-                <input type="text" id="input_field" name="input_field" class="form-control" placeholder="Digite algo...">
-                <button class="btn btn-secondary">+</button>
+                <button (click)="subIten($event)" class="btn btn-secondary">-</button>
+                <input  type="number" id="qtdIten"  name="numeroItens" class="form-control" placeholder="0">
+                <button (click)="addIten($event)" class="btn btn-secondary">+</button>
             </div>
         </div>
         
