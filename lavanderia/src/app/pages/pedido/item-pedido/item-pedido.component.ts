@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { NgModel,FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-item-pedido',
@@ -8,13 +8,16 @@ import { NgModel } from '@angular/forms';
 })
 export class ItemPedidoComponent {
 
-  qtdIten: Number = 0; // Variável para armazenar o valor do input
+  qtdIten: number = 0; // Variável para armazenar o valor do input
 
   addIten(event: Event){
     event.preventDefault();
+    this.qtdIten = this.qtdIten + 1;
   }
 
   subIten(event: Event){
     event.preventDefault();
+    if (this.qtdIten > 0)
+      this.qtdIten = this.qtdIten - 1;
   }
 }

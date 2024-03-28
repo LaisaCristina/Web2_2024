@@ -11,5 +11,6 @@
         <form (ngSubmit)="teste()">
             <div #containerItens></div>
         </form>
+        <app-modal-confirmacao (confirmed)="onConfirmed($event)"></app-modal-confirmacao>
     </div>
 </div>

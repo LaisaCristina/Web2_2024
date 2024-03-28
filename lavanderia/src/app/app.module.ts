@@ -10,6 +10,8 @@ import { ItemPedidoComponent } from './pages/pedido/item-pedido/item-pedido.comp
 import { HomeComponent } from './pages/home/home.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FormsModule } from '@angular/forms';
+import { ModalConfirmacaoComponent } from './pages/pedido/modal-confirmacao/modal-confirmacao.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,11 +26,13 @@ const routes: Routes = [
     HomeComponent,
     CadastroComponent,
     NavBarComponent,
+    ModalConfirmacaoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
