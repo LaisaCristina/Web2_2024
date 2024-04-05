@@ -11,6 +11,7 @@
         <form (ngSubmit)="teste()">
             <div #containerItens></div>
         </form>
-        <app-modal-confirmacao (confirmed)="onConfirmed($event)"></app-modal-confirmacao>
+        <app-modal-confirmacao *ngIf="isConfirmationModalVisible" (confirmed)="onConfirmed($event)"></app-modal-confirmacao>
+        <app-modal-empty-itens *ngIf="isModalEmptyItens" (confirmed)="onConfirmedEmpty($event)"></app-modal-empty-itens>
     </div>
 </div>

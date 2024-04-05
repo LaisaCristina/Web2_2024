@@ -16,6 +16,7 @@ export class PedidoComponent {
   constructor(private router: Router) {}
 
   isConfirmationModalVisible: boolean = false;
+  isModalEmptyItens: boolean = false;
   private itensComponent: ComponentRef<ItemPedidoComponent>[] = [];
 
   addPedido() {
@@ -24,12 +25,35 @@ export class PedidoComponent {
   }
 
   confirmarPedido(){
+    console.log(this.containerItens.length);
+    if(this.containerItens.length > 0){
+      let flag: boolean = false;
+      for (let i = 0; i < this.containerItens.length; i++){
+        const componentRef = this.itensComponent[i];
+        const component = (componentRef) as ComponentRef<ItemPedidoComponent>;
+        if (component.instance.qtdIten <= 0 ){
+          flag = true;
+          break;
+        }
+      }
+      if (flag)
+       this.isModalEmptyItens = true;
+      else
+        this.isConfirmationModalVisible = true;
+    }else{
+      this.isModalEmptyItens = true;
+    }
+  }
+
+  enviarPedido(){
     for (let i = 0; i < this.containerItens.length; i++) {
       const componentRef = this.itensComponent[i];
       const component = (componentRef) as ComponentRef<ItemPedidoComponent>;
       console.log(component);
       console.log(component.instance.qtdIten);
     }
+    this.router.navigate(['/lista-pedidos'])
+    
   }
 
   teste(){
@@ -43,13 +67,13 @@ export class PedidoComponent {
 
   // Método chamado quando a ação é confirmada ou cancelada na modal
   onConfirmed(confirmed: boolean) {
-    if (confirmed) {
-      // Lógica para ação confirmada
-      console.log('Ação confirmada');
-    } else {
-      // Lógica para ação cancelada
-      console.log('Ação cancelada');
-    }
+    if (confirmed) 
+      this.enviarPedido();
+
     this.isConfirmationModalVisible = false;
+  }
+
+  onConfirmedEmpty(confirmed: boolean) {
+    this.isModalEmptyItens = false;
   }
 }
