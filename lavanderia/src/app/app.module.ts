@@ -15,6 +15,7 @@ import { ModalConfirmacaoComponent } from './pages/pedido/modal-confirmacao/moda
 import { ListaPedidosComponent } from './pages/lista-pedidos/lista-pedidos.component';
 import { FilterPedidosPipe } from './pipes/filter-pedidos.pipe';
 import { OrderByDatePipe } from './pipes/order-by-date.pipe';
+import { FuncVisualizacaoPedidosComponent } from './pages/func-visualizacao-pedidos/func-visualizacao-pedidos.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,7 +33,8 @@ const routes: Routes = [
     ModalConfirmacaoComponent,
     ListaPedidosComponent,
     FilterPedidosPipe,
-    OrderByDatePipe
+    OrderByDatePipe,
+    FuncVisualizacaoPedidosComponent
   ],
   imports: [
     BrowserModule,
