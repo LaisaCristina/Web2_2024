@@ -37,8 +37,8 @@ const routes: Routes = [
     ListaPedidosComponent,
     FilterPedidosPipe,
     OrderByDatePipe,
-    ModalItemVazioComponent,
-    FuncVisualizacaoPedidosComponent
+    FuncVisualizacaoPedidosComponent,
+    ModalItemVazioComponent
   ],
   imports: [
     BrowserModule,
