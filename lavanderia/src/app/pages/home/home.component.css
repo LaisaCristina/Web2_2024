@@ -1,6 +1,13 @@
-@import url('../../../../../style/reset.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Inter', sans-serif;
+    color: black;
+}
 .fundo{
     width: 100vw;
     height: 100vh;
@@ -131,7 +138,7 @@ box-shadow: 10px 10px 271px -38px rgba(0,0,0,0.75);
 }
 
 .conteudo p{
-    margin-top: 2%;
+    margin-top: 1%;
 }
 
 

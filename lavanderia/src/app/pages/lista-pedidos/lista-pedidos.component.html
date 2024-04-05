@@ -1,0 +1,35 @@
+<p>lista-pedidos works!</p>
+<div class="container">
+    <h2>Listagem de Pedidos</h2>
+    <div class="form-group">
+      <label for="filtroEstado">Filtrar por Estado:</label>
+      <select class="form-control" id="filtroEstado" [(ngModel)]="filtroEstado">
+        <option value="">Todos</option>
+        <option value="pendente">Pendente</option>
+        <option value="processando">Processando</option>
+        <option value="enviado">Enviado</option>
+        <option value="entregue">Entregue</option>
+      </select>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Número do Pedido</th>
+          <th>Data/Hora</th>
+          <th>Estado</th>
+          <th>Valor</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos | filterPedidos:filtroEstado | orderByDate: 'desc'">
+          <td>{{ pedido.numero }}</td>
+          <td>{{ pedido.dataHora }}</td>
+          <td>{{ pedido.estado }}</td>
+          <td>{{ pedido.valor | currency }}</td>
+          <td><button class="btn btn-primary" (click)="pagarPedido(pedido)">Pagar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
