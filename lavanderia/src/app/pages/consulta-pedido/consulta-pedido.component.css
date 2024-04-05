@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Inter', sans-serif;
+    color: black;
+}
+.fundo{
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.containerMenu{
+    width: 100vw;
+    height: 8%;
+}
+
+.menu{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 8%;
+    background-color: whitesmoke;
+    -webkit-box-shadow: 0px 4px 4px 2px rgba(0,0,0,0.41);
+-moz-box-shadow: 0px 4px 4px 2px rgba(0,0,0,0.41);
+box-shadow: 0px 4px 4px 2px rgba(0,0,0,0.41);
+
+
+}
+
+.elementoMenu{
+
+    font-weight: bold;
+    height: 100%;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.elementoMenu a{
+
+    font-size: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+.elementoMenu:first-child{
+    font-size: 120%;
+}
+
+.perfil
+{
+    margin-left: auto;
+    margin-right: 3%;
+}
+
+img{
+    height: 8vh;
+}
+
+.elementoMenu:hover{
+    background-color: rgb(207, 205, 205);
+}
+
+.containerLista{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    margin: auto;
+}
+
+.lista{
+    width: 100%;
+    padding: 2%;
+    
+}
+
+.listaElemento{
+    display: flex;
+    height: 20%;
+    border-radius: 10px;
+    margin: 2% 0px 2% 0px;
+    flex-direction: row;
+    border: 2px dashed black;
+}
+
+.listaElemento:hover{
+    -webkit-box-shadow: 10px 10px 271px -38px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 271px -38px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 271px -38px rgba(0,0,0,0.75);
+    height: 23%;
+}
+
+.areaConstulta{
+    display: flex;
+    margin: auto;
+    height: 20%;
+    width: 90%;
+    margin-top: 5%;
+    background-color: rgb(187, 202, 187);
+    border-radius: 20px;
+}
+
+.formularioConsulta{
+    display: flex;
+    margin: auto;
+}
+
+.botaoPesquisar{
+    margin-left: 10px;
+}
