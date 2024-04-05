@@ -11,12 +11,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
-import {listaPedid}
 import { ModalConfirmacaoComponent } from './pages/pedido/modal-confirmacao/modal-confirmacao.component';
 import { ModalEmptyItensComponent } from './pages/pedido/modal-empty-itens/modal-empty-itens.component';
 import { ListaPedidosComponent } from './pages/lista-pedidos/lista-pedidos.component';
 import { FilterPedidosPipe } from './pipes/filter-pedidos.pipe';
 import { OrderByDatePipe } from './pipes/order-by-date.pipe';
+import { ModalItemVazioComponent } from './pages/pedido/modal-item-vazio/modal-item-vazio.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,7 +35,8 @@ const routes: Routes = [
     ModalEmptyItensComponent,
     ListaPedidosComponent,
     FilterPedidosPipe,
-    OrderByDatePipe
+    OrderByDatePipe,
+    ModalItemVazioComponent
   ],
   imports: [
     BrowserModule,

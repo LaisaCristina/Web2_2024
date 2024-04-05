@@ -17,6 +17,7 @@ export class PedidoComponent {
 
   isConfirmationModalVisible: boolean = false;
   isModalEmptyItens: boolean = false;
+  isModalItemVazio: boolean = false;
   private itensComponent: ComponentRef<ItemPedidoComponent>[] = [];
 
   addPedido() {
@@ -25,19 +26,18 @@ export class PedidoComponent {
   }
 
   confirmarPedido(){
-    console.log(this.containerItens.length);
     if(this.containerItens.length > 0){
       let flag: boolean = false;
       for (let i = 0; i < this.containerItens.length; i++){
         const componentRef = this.itensComponent[i];
         const component = (componentRef) as ComponentRef<ItemPedidoComponent>;
-        if (component.instance.qtdIten <= 0 ){
+        if (component.instance.qtdIten < 1 ){
           flag = true;
           break;
         }
       }
       if (flag)
-       this.isModalEmptyItens = true;
+       this.isModalItemVazio = true;
       else
         this.isConfirmationModalVisible = true;
     }else{
@@ -75,5 +75,10 @@ export class PedidoComponent {
 
   onConfirmedEmpty(confirmed: boolean) {
     this.isModalEmptyItens = false;
+  }
+
+
+  onConfirmedVazio(confirmed: boolean){
+    this.isModalItemVazio = false;
   }
 }
