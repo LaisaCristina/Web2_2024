@@ -5,6 +5,7 @@ import { PedidoComponent } from './pages/pedido/pedido.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ListaPedidosComponent } from './pages/lista-pedidos/lista-pedidos.component';
+import { CadastroRoupasComponent } from './cadastro-roupas/cadastro-roupas.component';
 import { FuncVisualizacaoPedidosComponent } from './pages/func-visualizacao-pedidos/func-visualizacao-pedidos.component';
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cadastro', component: CadastroComponent},
   { path: 'lista-pedidos', component: ListaPedidosComponent},
+  {path: 'cadastrar-roupa', component: CadastroRoupasComponent},
   {path: 'func-visualizacao-pedidos', component: FuncVisualizacaoPedidosComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' } // Redireciona para o login por padrão se a URL for vazia.
 ];
