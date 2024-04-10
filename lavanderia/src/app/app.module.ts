@@ -16,6 +16,7 @@ import { ModalEmptyItensComponent } from './pages/pedido/modal-empty-itens/modal
 import { ListaPedidosComponent } from './pages/lista-pedidos/lista-pedidos.component';
 import { FilterPedidosPipe } from './pipes/filter-pedidos.pipe';
 import { OrderByDatePipe } from './pipes/order-by-date.pipe';
+import { FuncVisualizacaoPedidosComponent } from './pages/func-visualizacao-pedidos/func-visualizacao-pedidos.component';
 import { ModalItemVazioComponent } from './pages/pedido/modal-item-vazio/modal-item-vazio.component';
 import { CadastroRoupasComponent } from './cadastro-roupas/cadastro-roupas.component';
 
@@ -38,7 +39,9 @@ const routes: Routes = [
     FilterPedidosPipe,
     OrderByDatePipe,
     ModalItemVazioComponent,
-    CadastroRoupasComponent
+    CadastroRoupasComponent,
+    FuncVisualizacaoPedidosComponent,
+    ModalItemVazioComponent
   ],
   imports: [
     BrowserModule,
