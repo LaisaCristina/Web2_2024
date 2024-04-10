@@ -18,6 +18,7 @@ import { FilterPedidosPipe } from './pipes/filter-pedidos.pipe';
 import { OrderByDatePipe } from './pipes/order-by-date.pipe';
 import { FuncVisualizacaoPedidosComponent } from './pages/func-visualizacao-pedidos/func-visualizacao-pedidos.component';
 import { ModalItemVazioComponent } from './pages/pedido/modal-item-vazio/modal-item-vazio.component';
+import { CadastroRoupasComponent } from './cadastro-roupas/cadastro-roupas.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -37,6 +38,8 @@ const routes: Routes = [
     ListaPedidosComponent,
     FilterPedidosPipe,
     OrderByDatePipe,
+    ModalItemVazioComponent,
+    CadastroRoupasComponent,
     FuncVisualizacaoPedidosComponent,
     ModalItemVazioComponent
   ],
