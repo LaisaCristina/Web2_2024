@@ -1,5 +1,5 @@
-<p>lista-pedidos works!</p>
-<div class="container">
+<app-nav-bar></app-nav-bar>
+<div class="container m-5">
     <h2>Listagem de Pedidos</h2>
     <div class="form-group">
       <label for="filtroEstado">Filtrar por Estado:</label>
@@ -23,10 +23,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let pedido of pedidos | filterPedidos:filtroEstado | orderByDate: 'desc'">
-          <td>{{ pedido.numero }}</td>
+          <td># {{ pedido.numero }}</td>
           <td>{{ pedido.dataHora }}</td>
           <td>{{ pedido.estado }}</td>
-          <td>{{ pedido.valor | currency }}</td>
+          <td>{{ pedido.valor | currency:'BRL'}}</td>
           <td><button class="btn btn-primary" (click)="pagarPedido(pedido)">Pagar</button></td>
         </tr>
       </tbody>
