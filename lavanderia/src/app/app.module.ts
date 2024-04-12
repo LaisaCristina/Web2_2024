@@ -19,6 +19,7 @@ import { OrderByDatePipe } from './pipes/order-by-date.pipe';
 import { ModalItemVazioComponent } from './pages/pedido/modal-item-vazio/modal-item-vazio.component';
 import { FuncVisualizacaoPedidosComponent } from './pages/func-visualizacao-pedidos/func-visualizacao-pedidos.component';
 import { CadastroRoupasComponent } from './cadastro-roupas/cadastro-roupas.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -41,7 +42,8 @@ const routes: Routes = [
     ModalItemVazioComponent,
     CadastroRoupasComponent,
     FuncVisualizacaoPedidosComponent,
-    ModalItemVazioComponent
+    ModalItemVazioComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
