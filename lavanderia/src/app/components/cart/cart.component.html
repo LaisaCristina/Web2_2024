@@ -1,0 +1,76 @@
+<div class="h-auto">
+  <ng-container *ngIf="products.length > 0; else emptyCart">
+    <table class="table text-start text-sm text-muted">
+      <thead class="bg-light text-uppercase text-dark">
+        <tr>
+          <th scope="col">
+            <span class="visually-hidden">Image</span>
+          </th>
+          <th scope="col">Produto</th>
+          <th scope="col">Quantidade</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Remover</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; let i = index" class="border-bottom bg-white">
+          <td class="w-25 p-3">
+            <img [src]="product.imagemSrc" alt="{{ product.title }}" class="img-fluid" />
+          </td>
+          <td class="text-dark fw-semibold p-3">
+            {{ product.title }}
+          </td>
+          <td class="p-3">
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn btn-outline-secondary p-1" type="button" (click)="decreaseQuantity(i)">
+                <span class="visually-hidden">Quantity button</span>
+                <svg class="bi bi-dash" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path d="M3.5 8a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+              </button>
+              <div>
+                <input type="number" id="product_{{ i }}" class="form-control w-25" [(ngModel)]="product.quantity" required />
+              </div>
+              <button class="btn btn-outline-secondary p-1" type="button" (click)="increaseQuantity(i)">
+                <span class="visually-hidden">Quantity button</span>
+                <svg class="bi bi-plus" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path d="M8 3.5a.5.5 0 0 1 .5.5v4.5H13a.5.5 0 0 1 0 1H8.5V13a.5.5 0 0 1-1 0v-4.5H3a.5.5 0 0 1 0-1h4.5V4a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+              </button>
+            </div>
+          </td>
+          <td class="text-dark fw-semibold p-3">
+            {{ product.value }}
+          </td>
+          <td class="text-dark fw-semibold p-3 w-50">
+            {{ product.description }}
+          </td>
+          <td class="text-dark fw-semibold p-3 w-10" (click)="removeCartItem(i)">
+            <button class="btn btn-danger p-2">
+              <!-- <mat-icon fontIcon="delete_outline"></mat-icon> -->
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex align-items-center justify-content-between border bg-primary p-3">
+      <div class="d-flex flex-column">
+        <p class="fw-medium text-white">
+          Valor total: R$: {{ calculateTotalValue() | number: "1.2-2" }}
+        </p>
+        <p class="fw-medium text-white">Prazo de entrega: 17/08/2023 8:00</p>
+      </div>
+      <app-button [success]="false" (click)="openConfirmationModal()">
+        Finalizar orçamento
+      </app-button>
+    </div>
+  </ng-container>
+  <ng-template #emptyCart>
+    <p class="text-center fw-medium fs-4 text-dark my-4">
+      Seu carrinho está vazio
+    </p>
+  </ng-template>
+</div>
+
+<app-confirmation-modal *ngIf="isConfirmationModalOpen" (cancel)="onCancelClick()" (confirm)="onConfirmClick()"></app-confirmation-modal>

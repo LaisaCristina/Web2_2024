@@ -1,0 +1,80 @@
+<app-nav-bar></app-nav-bar>
+<div *ngIf="selectedReport" class="container p-5">
+  <div class="w-100">
+    <h2 class="font-weight-medium d-flex align-items-center gap-1">
+      Detalhes do Cliente:
+      <span class="font-weight-normal">{{ selectedReport.name }}</span>
+    </h2>
+
+    <div #pdfContent class="p-2">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Cep</th>
+              <th scope="col">UF</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">Bairro</th>
+              <th scope="col">Rua</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ selectedReport.name }}</td>
+              <td>{{ selectedReport.email }}</td>
+              <td>{{ selectedReport.cpf }}</td>
+              <td>{{ selectedReport.phone }}</td>
+              <td>{{ selectedReport.cep }}</td>
+              <td>{{ selectedReport.uf }}</td>
+              <td>{{ selectedReport.city }}</td>
+              <td>{{ selectedReport.neighborhood }}</td>
+              <td>{{ selectedReport.street }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="p-2">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Número do pedido</th>
+                <th scope="col">Data do pedido</th>
+                <th scope="col">Data de entrega</th>
+                <th scope="col">Status do pedido</th>
+                <th scope="col">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of selectedReport.order">
+                <td>{{ order.id }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.deliveryDate }}</td>
+                <td>{{ order.status }}</td>
+                <td>R$ {{ order.value }},00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column w-100 align-items-end mb-2">
+      <ng-container *ngIf="!pdfConvertido; else pdfLink">
+        <button class="btn btn-secondary" (click)="convertToPDF(selectedReport)">
+          Converter para PDF
+        </button>
+      </ng-container>
+
+      <ng-template #pdfLink>
+        <a *ngIf="pdfConvertido" [href]="pdfDataUri" download="{{ selectedReport.name }}.pdf">
+          <button class="btn btn-success">Baixar PDF</button>
+        </a>
+      </ng-template>
+    </div>
+  </div>
+</div>

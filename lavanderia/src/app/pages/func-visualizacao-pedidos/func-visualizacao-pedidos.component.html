@@ -1,6 +1,6 @@
 <!-- visualizacao-pedidos.component.html -->
 <app-nav-bar></app-nav-bar>
-<div class="container">
+<div class="container mt-5">
     <h2>Visualização de Pedidos</h2>
   
     <!-- Filtros -->
@@ -28,12 +28,12 @@
           <div class="card-body">
             <h5 class="card-title">Pedido #{{ pedido.numero }}</h5>
             <p class="card-text">Data/Hora: {{ pedido.dataHora }}</p>
-            <p class="card-text">Estado: {{ pedido.estado }}</p>
+            <p class="card-text text-white">Estado: {{ pedido.estado }}</p>
   
             <!-- Botões de Ação -->
-            <button *ngIf="pedido.estado === 'EM ABERTO'" class="btn btn-warning" (click)="confirmarRecolhimento(pedido)">Confirmar Recolhimento</button>
-            <button *ngIf="pedido.estado === 'RECOLHIDO'" class="btn btn-info" (click)="confirmarLavagem(pedido)">Confirmar Lavagem</button>
-            <button *ngIf="pedido.estado === 'PAGO'" class="btn btn-warning" (click)="finalizarPedido(pedido)">Finalizar Pedido</button>
+            <button *ngIf="pedido.estado === 'EM ABERTO'" class="btn btn-primary" (click)="confirmarRecolhimento(pedido)">Confirmar Recolhimento</button>
+            <button *ngIf="pedido.estado === 'RECOLHIDO'" class="btn btn-primary" (click)="confirmarLavagem(pedido)">Confirmar Lavagem</button>
+            <button *ngIf="pedido.estado === 'PAGO'" class="btn btn-primary" (click)="finalizarPedido(pedido)">Finalizar Pedido</button>
           </div>
         </div>
       </div>

@@ -1,0 +1,33 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-5">
+  <div class="d-flex align-items-center justify-content-between w-100 pb-3">
+    <h1 class="h2 text-dark">Pedidos abertos</h1>
+  </div>
+
+  <div class="d-flex flex-column gap-4">
+    <div
+      class="d-flex flex-column border border-primary p-4 rounded mb-3"
+      *ngFor="let status of filteredPedidos"
+    >
+      <p class="fw-medium text-dark">Em Aberto</p>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <a class="fw-bold" routerLink="/order/details">{{ status.title }}</a>
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="openConfirmationModal(status)"
+        >
+          {{ status.statusBtn }}
+        </button>
+      </div>
+      <!-- <span>Data: {{ status.date | date }}</span> -->
+      <p>{{ status.description }}</p>
+    </div>
+  </div>
+
+  <app-confirmation-modal
+    *ngIf="selectedStatusToChange"
+    (confirm)="confirmStatusChange()"
+    (cancel)="cancelStatusChange()"
+  ></app-confirmation-modal>
+</div>
