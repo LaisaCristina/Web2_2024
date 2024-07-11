@@ -7,6 +7,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ListaPedidosComponent } from './pages/lista-pedidos/lista-pedidos.component';
 import { CadastroRoupasComponent } from './cadastro-roupas/cadastro-roupas.component';
 import { FuncVisualizacaoPedidosComponent } from './pages/func-visualizacao-pedidos/func-visualizacao-pedidos.component';
+import { HomeEmployeeComponent } from './pages/home-employee/home-employee.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,7 +17,9 @@ const routes: Routes = [
   { path: 'lista-pedidos', component: ListaPedidosComponent},
   {path: 'cadastrar-roupa', component: CadastroRoupasComponent},
   {path: 'func-visualizacao-pedidos', component: FuncVisualizacaoPedidosComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full' } // Redireciona para o login por padrão se a URL for vazia.
+  { path: 'home/employee', component: HomeEmployeeComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+   // Redireciona para o login por padrão se a URL for vazia.
 ];
 
 @NgModule({

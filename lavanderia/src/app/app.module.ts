@@ -19,6 +19,13 @@ import { OrderByDatePipe } from './pipes/order-by-date.pipe';
 import { ModalItemVazioComponent } from './pages/pedido/modal-item-vazio/modal-item-vazio.component';
 import { FuncVisualizacaoPedidosComponent } from './pages/func-visualizacao-pedidos/func-visualizacao-pedidos.component';
 import { CadastroRoupasComponent } from './cadastro-roupas/cadastro-roupas.component';
+import { HomeEmployeeComponent } from './pages/home-employee/home-employee.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ButtonsComponent } from './components/buttons/buttons.component';
+import { ProductComponent } from './components/product/product.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -41,13 +48,20 @@ const routes: Routes = [
     ModalItemVazioComponent,
     CadastroRoupasComponent,
     FuncVisualizacaoPedidosComponent,
-    ModalItemVazioComponent
+    ModalItemVazioComponent, 
+    HomeEmployeeComponent,
+    ConfirmationModalComponent,
+    CartComponent,
+    ButtonsComponent,
+    ProductComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
