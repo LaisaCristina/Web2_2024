@@ -27,6 +27,7 @@ import { ProductComponent } from './components/product/product.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { MatIconModule } from '@angular/material/icon';
 import { EmployeeCrudComponent } from './pages/employee-crud/employee-crud.component';
+import { EmployeeMaintenanceComponent } from './pages/employee-maintenance/employee-maintenance.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -56,7 +57,8 @@ const routes: Routes = [
     ButtonsComponent,
     ProductComponent,
     AlertComponent,
-    EmployeeCrudComponent
+    EmployeeCrudComponent,
+    EmployeeMaintenanceComponent
   ],
   imports: [
     BrowserModule,

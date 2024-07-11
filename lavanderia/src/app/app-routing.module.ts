@@ -9,6 +9,7 @@ import { CadastroRoupasComponent } from './cadastro-roupas/cadastro-roupas.compo
 import { FuncVisualizacaoPedidosComponent } from './pages/func-visualizacao-pedidos/func-visualizacao-pedidos.component';
 import { HomeEmployeeComponent } from './pages/home-employee/home-employee.component';
 import { EmployeeCrudComponent } from './pages/employee-crud/employee-crud.component';
+import { EmployeeMaintenanceComponent } from './pages/employee-maintenance/employee-maintenance.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'func-visualizacao-pedidos', component: FuncVisualizacaoPedidosComponent},
   { path: 'home/employee', component: HomeEmployeeComponent},
   { path: 'employee/crud', component: EmployeeCrudComponent},
+  { path: 'employee/maintenance', component: EmployeeMaintenanceComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
    // Redireciona para o login por padrão se a URL for vazia.
 ];
