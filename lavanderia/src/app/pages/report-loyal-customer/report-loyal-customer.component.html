@@ -1,0 +1,45 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container mt-5">
+  <h2 class="font-weight-bold">Lista de clientes fiéis</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <div #pdfContent class="p-2">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let report of reports">
+                <tr>
+                  <td>{{ report.id }}</td>
+                  <td>{{ report.name }}</td>
+                  <td>{{ report.cpf }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mt-3">
+        <ng-container *ngIf="!pdfConvertido; else pdfLink">
+          <app-button [success]="false" (click)="convertToPDF()">
+            Converter para PDF
+          </app-button>
+        </ng-container>
+
+        <ng-template #pdfLink>
+          <a *ngIf="pdfConvertido" [href]="pdfDataUri" download="Relatorio.pdf">
+            <app-button [success]="true">Baixar PDF</app-button>
+          </a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

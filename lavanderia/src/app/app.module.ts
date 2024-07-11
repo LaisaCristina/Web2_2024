@@ -28,6 +28,11 @@ import { AlertComponent } from './components/alert/alert.component';
 import { MatIconModule } from '@angular/material/icon';
 import { EmployeeCrudComponent } from './pages/employee-crud/employee-crud.component';
 import { EmployeeMaintenanceComponent } from './pages/employee-maintenance/employee-maintenance.component';
+import { ReportCustomerComponent } from './pages/report-customer/report-customer.component';
+import { ReportCustomerDetailsComponent } from './pages/report-customer-details/report-customer-details.component';
+import { ReportIncomeComponent } from './pages/report-income/report-income.component';
+import { ReportLoyalCustomerComponent } from './pages/report-loyal-customer/report-loyal-customer.component';
+import { DateFilterComponent } from './components/date-filter/date-filter.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -58,7 +63,12 @@ const routes: Routes = [
     ProductComponent,
     AlertComponent,
     EmployeeCrudComponent,
-    EmployeeMaintenanceComponent
+    EmployeeMaintenanceComponent,
+    ReportCustomerComponent,
+    ReportCustomerDetailsComponent,
+    ReportIncomeComponent,
+    ReportLoyalCustomerComponent,
+    DateFilterComponent
   ],
   imports: [
     BrowserModule,
