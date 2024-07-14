@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
+import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
 import { User } from 'src/app/models/User';
 import { Endereco } from 'src/app/models/Endereco';
 
@@ -18,32 +18,69 @@ export class CadastroComponent implements OnInit{
     this.initializeForm();
   }
 
-  //TODO alterar os campos , deixar eles com tipo e validação corretas
-  //Verificar no Front também
+  //TODO validação das senhas iguais
   initializeForm(){
     this.userForm = this.formBuilder.group({
-      nome: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      CPF: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      email: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      telefone: ["",Validators.requiredTrue,Validators.maxLength(250)],
+      nome: ["",[Validators.required,Validators.maxLength(250)]],
+      CPF: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('[0-9]*')]],
+      email: ["",[Validators.required,Validators.maxLength(250)]],
+      telefone: ["",[Validators.required,Validators.minLength(11),Validators.maxLength(12),Validators.pattern('[0-9]*')]],
 
       //Endereço
-      CEP: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      logradouro: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      numeroEndereco: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      complementoEndereco: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      bairroEndereco: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      cidadeEndereco: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      estadoEndereco: ["",Validators.requiredTrue,Validators.maxLength(250)],
+      CEP: ["",[Validators.required,Validators.maxLength(250)]],
+      logradouro: ["",[Validators.required,Validators.maxLength(250)]],
+      numeroEndereco: ["",[Validators.required,Validators.minLength(1), Validators.pattern('[0-9]*')]],
+      complementoEndereco: ["",[Validators.required,Validators.maxLength(250)]],
+      bairroEndereco: ["",[Validators.required,Validators.maxLength(60)]],
+      cidadeEndereco: ["",[Validators.required,Validators.maxLength(60)]],
+      estadoEndereco: ["",[Validators.required,Validators.maxLength(60)]],
 
       //Senha
-      senha: ["",Validators.requiredTrue,Validators.maxLength(250)],
-      senhaConfirm: ["",Validators.requiredTrue,Validators.maxLength(250)],
+      senha: ["",[Validators.required,Validators.minLength(4),Validators.maxLength(4)],Validators.pattern('[0-9]*')],
+      senhaConfirm: ["",[Validators.required, Validators.minLength(4),Validators.maxLength(4)],Validators.pattern('[0-9]*')],
+    }, {
+      validator: this.senhaMatchValidator() // Adiciona o validador personalizado aqui
+    });
+
+    // Adiciona listener para permitir apenas números no campo CPF
+    this.userForm.get('CPF')?.valueChanges.subscribe((value: string) => {
+      const newValue = value.replace(/\D/g, ''); // Remove não dígitos
+      this.userForm.get('CPF')?.patchValue(newValue, { emitEvent: false }); // Atualiza valor no campo
+    });
+
+    this.userForm.get('CEP')?.valueChanges.subscribe((value: string) => {
+      const newValue = value.replace(/\D/g, ''); // Remove não dígitos
+      this.userForm.get('CEP')?.patchValue(newValue, { emitEvent: false }); // Atualiza valor no campo
+    });
+
+    this.userForm.get('telefone')?.valueChanges.subscribe((value: string) => {
+      const newValue = value.replace(/\D/g, ''); // Remove não dígitos
+      this.userForm.get('telefone')?.patchValue(newValue, { emitEvent: false }); // Atualiza valor no campo
+    });
+
+    this.userForm.get('numeroEndereco')?.valueChanges.subscribe((value: string) => {
+      const newValue = value.replace(/\D/g, ''); // Remove não dígitos
+      this.userForm.get('numeroEndereco')?.patchValue(newValue, { emitEvent: false }); // Atualiza valor no campo
     });
   }
 
   submitForm(event: Event){
     event.preventDefault()
+    console.log(this.userForm.get('CPF')?.errors)
     console.log(this.userForm.value)
+  }
+
+
+  senhaMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const senha = control.get('senha');
+      const senhaConfirm = control.get('senhaConfirm');
+  
+      if (senha && senhaConfirm && senha.value !== senhaConfirm.value) {
+        return { senhaMismatch: true };
+      }
+  
+      return null;
+    };
   }
 }
