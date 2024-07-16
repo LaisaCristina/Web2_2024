@@ -1,4 +1,5 @@
-export interface Endereco {    
+export interface Endereco {
+    idCliente: Number;    
     logradouro: String;
     numero: String;
     complemento: String;

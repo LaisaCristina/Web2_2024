@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
 import { User } from 'src/app/models/User';
 import { Endereco } from 'src/app/models/Endereco';
+import { Cliente } from 'src/app/models/Cliente';
 
 @Component({
   selector: 'app-cadastro',
@@ -9,7 +10,7 @@ import { Endereco } from 'src/app/models/Endereco';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit{
-  users: User | undefined;
+  users: Cliente | undefined;
   endereco: Endereco | undefined;
   userForm: FormGroup = new FormGroup({});
 
@@ -93,6 +94,7 @@ export class CadastroComponent implements OnInit{
 
   getDadosEndereco(): Endereco{
     let enderecoCad: Endereco = {
+      idCliente: 1,
       logradouro: this.userForm.get('logradouro')?.value,
       numero: this.userForm.get('numeroEndereco')?.value,
       complemento: this.userForm.get('complementoEndereco')?.value,
@@ -102,13 +104,16 @@ export class CadastroComponent implements OnInit{
     return enderecoCad;
   }
 
-  getDadosUsuario(): User{
-    let userCad: User = {    
+  getDadosUsuario(): Cliente{
+    let userCad: Cliente = {
+      id: 1,
+      telefone: this.userForm.get('telefone')?.value,
       nome: this.userForm.get('nome')?.value,
-      idade: this.userForm.get('idade')?.value,
       CPF: this.userForm.get('CPF')?.value,
       email: this.userForm.get('email')?.value,
       senha: this.userForm.get('senha')?.value,
+      endereco: 1,
+      pedidos: [],
     }
     return userCad;
   }
