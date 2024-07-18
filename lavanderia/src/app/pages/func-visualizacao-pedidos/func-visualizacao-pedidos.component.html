@@ -1,42 +1,48 @@
 <!-- visualizacao-pedidos.component.html -->
 <app-nav-bar></app-nav-bar>
 <div class="container mt-5">
-    <h2>Visualização de Pedidos</h2>
-  
-    <!-- Filtros -->
-    <div class="form-group">
-      <label for="filtroData">Filtrar por Data:</label>
-      <input type="date" class="form-control" id="filtroDataInicio" [(ngModel)]="filtroDataInicio">
-      <label for="filtroDataFim"></label>
-      <input type="date" class="form-control" id="filtroDataFim" [(ngModel)]="filtroDataFim">
-    </div>
-  
-    <div class="form-group">
-      <button class="btn btn-primary" (click)="filtrarPorData()">Filtrar</button>
-      <button class="btn btn-secondary" (click)="limparFiltro()">Limpar</button>
-    </div>
-  
-    <!-- Lista de Pedidos -->
-    <div class="pedidos-lista">
-      <div *ngFor="let pedido of pedidos | orderByDate: 'asc'" class="card mt-3">
-        <div [ngClass]="{'card-yellow': pedido.estado === 'EM ABERTO',
+  <h2>Visualização de Pedidos</h2>
+
+  <!-- Filtros -->
+  <div class="form-group">
+    <label for="filtroData">Filtrar por Data:</label>
+    <input type="date" class="form-control" id="filtroDataInicio"
+      [(ngModel)]="filtroDataInicio">
+    <label for="filtroDataFim"></label>
+    <input type="date" class="form-control" id="filtroDataFim"
+      [(ngModel)]="filtroDataFim">
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="filtrarPorData()">Filtrar</button>
+    <button class="btn btn-secondary" (click)="limparFiltro()">Limpar</button>
+  </div>
+
+  <!-- Lista de Pedidos -->
+  <div class="pedidos-lista">
+    <div *ngFor="let pedido of pedidosFiltrados | orderByDate: 'asc'"
+      class="card mt-3">
+      <div [ngClass]="{'card-yellow': pedido.estado === 'EM ABERTO',
                         'card-red': pedido.estado === 'REJEITADO' || pedido.estado === 'CANCELADO',
                         'card-grey': pedido.estado === 'RECOLHIDO',
                         'card-blue': pedido.estado === 'AGUARDANDO PAGAMENTO',
                         'card-orange': pedido.estado === 'PAGO',
                         'card-green': pedido.estado === 'FINALIZADO'}">
-          <div class="card-body">
-            <h5 class="card-title">Pedido #{{ pedido.numero }}</h5>
-            <p class="card-text">Data/Hora: {{ pedido.dataHora }}</p>
-            <p class="card-text text-white">Estado: {{ pedido.estado }}</p>
-  
-            <!-- Botões de Ação -->
-            <button *ngIf="pedido.estado === 'EM ABERTO'" class="btn btn-primary" (click)="confirmarRecolhimento(pedido)">Confirmar Recolhimento</button>
-            <button *ngIf="pedido.estado === 'RECOLHIDO'" class="btn btn-primary" (click)="confirmarLavagem(pedido)">Confirmar Lavagem</button>
-            <button *ngIf="pedido.estado === 'PAGO'" class="btn btn-primary" (click)="finalizarPedido(pedido)">Finalizar Pedido</button>
-          </div>
+        <div class="card-body">
+          <h5 class="card-title">Pedido #{{ pedido.numero }}</h5>
+          <p class="card-text">Data/Hora: {{ pedido.dataHora }}</p>
+          <p class="card-text text-white">Estado: {{ pedido.estado }}</p>
+
+          <!-- Botões de Ação -->
+          <button *ngIf="pedido.estado === 'EM ABERTO'" class="btn btn-primary"
+            (click)="confirmarRecolhimento(pedido)">Confirmar
+            Recolhimento</button>
+          <button *ngIf="pedido.estado === 'RECOLHIDO'" class="btn btn-primary"
+            (click)="confirmarLavagem(pedido)">Confirmar Lavagem</button>
+          <button *ngIf="pedido.estado === 'PAGO'" class="btn btn-primary"
+            (click)="finalizarPedido(pedido)">Finalizar Pedido</button>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
