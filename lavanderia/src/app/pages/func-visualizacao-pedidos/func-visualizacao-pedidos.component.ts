@@ -5,23 +5,35 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './func-visualizacao-pedidos.component.html',
   styleUrls: ['./func-visualizacao-pedidos.component.css']
 })
-export class FuncVisualizacaoPedidosComponent // visualizacao-pedidos.component.ts
+export class FuncVisualizacaoPedidosComponent implements OnInit {
+  // visualizacao-pedidos.component.ts
 
-{
-  pedidos = [
-    { numero: 1, dataHora: '2024-03-28 10:00', estado: 'EM ABERTO' },
-    { numero: 2, dataHora: '2024-03-27 11:00', estado: 'REJEITADO' },
-    { numero: 3, dataHora: '2024-03-26 12:00', estado: 'RECOLHIDO' },
-    { numero: 4, dataHora: '2024-03-25 13:00', estado: 'AGUARDANDO PAGAMENTO' },
-    { numero: 5, dataHora: '2024-03-24 14:00', estado: 'PAGO' },
-    { numero: 6, dataHora: '2024-03-23 15:00', estado: 'FINALIZADO' }
+  pedidos: any[] = [
+    { numero: 1, dataHora: '2024-07-15', estado: 'EM ABERTO' },
+    { numero: 2, dataHora: '2024-07-16', estado: 'REJEITADO' },
+    { numero: 3, dataHora: '2024-07-17', estado: 'RECOLHIDO' },
+    { numero: 4, dataHora: '2024-07-18', estado: 'AGUARDANDO PAGAMENTO' },
+    { numero: 5, dataHora: '2024-03-24', estado: 'PAGO' },
+    { numero: 6, dataHora: '2024-03-23', estado: 'FINALIZADO' }
   ];
 
+  pedidosFiltrados: any[] = [];
   filtroDataInicio: string = '';
   filtroDataFim: string = '';
 
-  filtrarPorData() {
-    // Implemente a lógica de filtragem por data
+  ngOnInit(): void {
+    this.pedidosFiltrados = [...this.pedidos]; // Inicialmente mostra todos os pedidos
+  }
+
+
+  filtrarPorData(): void {
+    const filtroDataInicio = new Date(this.filtroDataInicio);
+    const filtroDataFim = new Date(this.filtroDataFim);
+
+    this.pedidosFiltrados = this.pedidos.filter(pedido => {
+      const dataPedido = new Date(pedido.dataHora);
+      return dataPedido >= filtroDataInicio && dataPedido <= filtroDataFim;
+    });
   }
 
   limparFiltro() {
