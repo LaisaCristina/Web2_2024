@@ -175,25 +175,29 @@ export class ReportCustomerDetailsComponent implements OnInit {
     },
   ];
 
-  convertToPDF(report: IReport) {
-    this.selectedReport = report;
-    this.pdfConvertido = true;
+  convertToPDF() {
+    if (!this.pdfContent) {
+      console.error('pdfContent is not defined');
+      return;
+    }
+
     const content = this.pdfContent.nativeElement;
     const options = {
-      margin: 10,
-      filename: `${report.name}.pdf`,
+      margin: 1,
+      filename: `${this.selectedReport?.name}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2 },
-      jsPDF: { orientation: 'landscape' },
+      jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
     };
 
     html2pdf()
       .from(content)
       .set(options)
-      .outputPdf()
-      .then((pdf: string) => {
-        this.pdfDataUri = 'data:application/pdf;base64,' + btoa(pdf);
+      .output('dataurlstring')
+      .then((pdfDataUri: string) => {
+        this.pdfDataUri = pdfDataUri;
+        this.pdfConvertido = true;
       })
-      .catch((error: unknown) => console.error(error));
+      .catch((error: unknown) => console.error('Error generating PDF', error));
   }
 }

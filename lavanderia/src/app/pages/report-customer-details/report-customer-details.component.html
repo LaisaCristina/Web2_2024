@@ -65,7 +65,7 @@
 
     <div class="d-flex flex-column w-100 align-items-end mb-2">
       <ng-container *ngIf="!pdfConvertido; else pdfLink">
-        <button class="btn btn-secondary" (click)="convertToPDF(selectedReport)">
+        <button class="btn btn-secondary" (click)="convertToPDF()">
           Converter para PDF
         </button>
       </ng-container>
