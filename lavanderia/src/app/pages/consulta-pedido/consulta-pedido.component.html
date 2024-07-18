@@ -1,17 +1,33 @@
 <body>
-    <div class="fundo">
-        <ul class="menu">
-            <li class="elementoMenu"><a class="hoverMenu" href="#">LoL</a></li>
-            <li class="elementoMenu"><a class="hoverMenu"href="#">PEDIR</a></li>
-            <li class="elementoMenu"><a class="hoverMenu"href="#">LISTAR</a></li>
-            <li class="elementoMenu"><a class="hoverMenu" href="#">CONSULTAR</a></li>
-            <li class="perfil"><img src="../assets/perfil.png"></li>
-        </ul>
-        <div class="areaConstulta">
+    <ul class="menu">
+        <li class="elementoMenu"><a class="hoverMenu" href="#">LoL</a></li>
+        <li class="elementoMenu"><a class="hoverMenu"href="#">PEDIR</a></li>
+        <li class="elementoMenu"><a class="hoverMenu"href="#">LISTAR</a></li>
+        <li class="elementoMenu"><a class="hoverMenu" href="#">CONSULTAR</a></li>
+        <li class="perfil"><img src="../assets/perfil.png"></li>
+    </ul>
+    <div class = "fundoConsulta">
+        <div class="areaConsulta">
             <div class="formularioConsulta">
-                <input type="text" id="inputConsulta" placeholder="Informe o código do produto">
-                <button class="botaoPesquisar">Pesquisar</button>
+                <input type="text" id="inputConsulta">
+                <button class="botaoPesquisar"><b>Pesquisar</b></button>
+            </div>
+            <div class="pedido">
+                <div class="nomePedido"><h1>Pedido N:#0043</h1></div>
+                <div class="imagemPedido"></div>
+                <div class="conteudoPedido">
+                    <h2>Lista de Roupas:</h2>
+                    <ul class="listaRoupa">
+                        <li class="roupa">3 Camisas: R$20</li>
+                        <li class="roupa">1 Jaqueta: R$50</li>
+                    </ul>
+                    <div class="precoTotal">
+                        <p>Preço Total: R$110</p>
+                        <p class="situacao">Situação: em aberto <div class="circuloSituacao"></div></p>    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </body>

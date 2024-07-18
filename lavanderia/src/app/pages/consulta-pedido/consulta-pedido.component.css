@@ -8,17 +8,10 @@
     font-family: 'Inter', sans-serif;
     color: black;
 }
-.fundo{
-    width: 100vw;
+
+body{
     height: 100vh;
-
 }
-
-.containerMenu{
-    width: 100vw;
-    height: 8%;
-}
-
 .menu{
     display: flex;
     flex-direction: row;
@@ -98,21 +91,106 @@ box-shadow: 10px 10px 271px -38px rgba(0,0,0,0.75);
     height: 23%;
 }
 
-.areaConstulta{
+.fundoConsulta{
+    width: 100%;
+    height: 100%;
     display: flex;
-    margin: auto;
-    height: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+.areaConsulta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(149, 140, 140);
+    height: 85%;
     width: 90%;
-    margin-top: 5%;
-    background-color: rgb(187, 202, 187);
     border-radius: 20px;
+
 }
 
 .formularioConsulta{
     display: flex;
-    margin: auto;
+    width: 60%;
+    height: 30%;
+
+    justify-content: center;
+    align-items: start;
+    position: absolute;
+    top: 25%
+}
+
+#inputConsulta{
+    display: flex;
+    width: 50%;
+    height: 20%;
+    border-radius: 5px;
+    margin-right: 2%;
+    border: 0px solid black;
+    font-size: 100%;
+    justify-content: center;
+
 }
 
 .botaoPesquisar{
-    margin-left: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    width: 15%;
+    border-radius: 5px;
+    font-size: 100%;
+    padding: 2px;
+    border: 0px solid black;
+    background-color: rgb(96, 240, 96);
+}
+
+.pedido{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: 50%;
+    border-radius: 5px;
+    background-color: rgb(242, 238, 238);
+}
+
+
+.nomePedido
+{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgb(93, 92, 92);
+    background-color: rgb(200, 200, 200);
+    border-radius: 5px 5px 0px 0px;
+}
+
+.conteudoPedido{
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.precoTotal{
+    border-top: 1px solid rgb(93, 92, 92);
+    display: flex;
+    flex-direction: row;
+    margin-top: 23%;
+    justify-content: space-between;
+}
+
+
+.listaRoupa
+{
+    list-style: decimal;
+}
+
+.circuloSituacao{
+    height: 1rem;
+    width: 1rem;
+    background-color: green;
+    border-radius: 20px;
 }

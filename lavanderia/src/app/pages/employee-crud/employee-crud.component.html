@@ -1,0 +1,95 @@
+<app-nav-bar></app-nav-bar>
+<div class="d-flex justify-content-between w-95 m-5">
+    <div class="d-flex flex-column">
+      <h2 class="h2 font-weight-medium text-center mb-2">
+        Lista de Peças de Roupas
+      </h2>
+      <div class="d-flex flex-column p-4 gap-2 w-100 overflow-auto">
+        <div class="d-flex flex-row flex-wrap">
+          <div
+            class="d-flex flex-column bg-white p-4 gap-2 w-25 rounded mr-1 mb-3"
+            *ngFor="let item of clothingItems"
+          >
+            <h2 class="h5 font-weight-medium text-center">{{ item.name }}</h2>
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="d-flex flex-column gap-2">
+                <img
+                  [src]="item.imageUrl"
+                  alt="imagem do produto"
+                  class="w-100 h-auto"
+                />
+                <p>Preço: {{ item.price }}</p>
+                <p>Prazo: {{ item.deliveryTime }}</p>
+                <div class="d-flex flex-column gap-2">
+                  <button
+                    class="btn btn-primary"
+                    (click)="editItem(item)"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    (click)="removeItem(item)"
+                  >
+                    Remover
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="listaVazia"
+        class="d-flex align-items-center justify-content-center w-100 pt-5 font-weight-medium h4"
+      >
+        A lista está vazia
+      </div>
+    </div>
+
+    <div>
+      <h2 class="h2 font-weight-medium text-center mb-2">
+        Painel de Adição/Edição
+      </h2>
+
+      <div class="d-flex flex-column gap-2 p-4 bg-white rounded">
+        <p class="font-weight-medium">Nome da peça de roupa:</p>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="novoItem.name"
+        />
+        <p class="font-weight-medium">Preço individual:</p>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="novoItem.price"
+        />
+        <p class="font-weight-medium">Prazo de lavagem:</p>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="novoItem.deliveryTime"
+        />
+
+        <div class="d-flex align-items-center justify-content-center p-4 rounded bg-light">
+          <p class="font-weight-medium text-center">Adicione ou arreste uma imagem</p>
+          <mat-icon fontIcon="keyboard_arrow_up"></mat-icon>
+        </div>
+
+        <div class="d-flex justify-content-between gap-2">
+          <button class="btn btn-danger w-50" (click)="cleanForm()">
+            Cancelar
+          </button>
+          <button
+            class="btn btn-success w-50"
+            (click)="updateItem()"
+          >
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
