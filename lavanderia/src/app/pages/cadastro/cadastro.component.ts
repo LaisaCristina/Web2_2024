@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
 import { User } from 'src/app/models/User';
 import { Endereco } from 'src/app/models/Endereco';
-import { Cliente } from 'src/app/models/Cliente';
+import { Usuario } from 'src/app/models/Usuario';
 
 @Component({
   selector: 'app-cadastro',
@@ -10,7 +10,7 @@ import { Cliente } from 'src/app/models/Cliente';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit{
-  users: Cliente | undefined;
+  users: Usuario | undefined;
   endereco: Endereco | undefined;
   userForm: FormGroup = new FormGroup({});
 
@@ -104,8 +104,8 @@ export class CadastroComponent implements OnInit{
     return enderecoCad;
   }
 
-  getDadosUsuario(): Cliente{
-    let userCad: Cliente = {
+  getDadosUsuario(): Usuario{
+    let userCad: Usuario = {
       id: 1,
       telefone: this.userForm.get('telefone')?.value,
       nome: this.userForm.get('nome')?.value,
@@ -114,6 +114,7 @@ export class CadastroComponent implements OnInit{
       senha: this.userForm.get('senha')?.value,
       endereco: 1,
       pedidos: [],
+      tipo: 'C'
     }
     return userCad;
   }

@@ -28,7 +28,7 @@ export class Cliente {
   pedidos: Pedido[];
 }*/
 
-export interface Cliente {
+export interface Usuario {
   id: number;
 
   CPF: string;
@@ -44,4 +44,6 @@ export interface Cliente {
   senha: string;
 
   pedidos: Pedido[];
+
+  tipo: string;
 }

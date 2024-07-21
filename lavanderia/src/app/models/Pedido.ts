@@ -27,14 +27,14 @@ export class Pedido {
   recolhimentos: Recolhimento[];
 }*/
 
-import { Cliente } from "./Cliente";
+import { Usuario } from "./Usuario";
 import { ItemPedido } from "./ItemPedido";
 import { Recolhimento } from "./Recolhimento";
 
 export interface Pedido {
   id: number;
 
-  cliente: Cliente;
+  Usuario: Usuario;
 
   dataHora: Date;
 
