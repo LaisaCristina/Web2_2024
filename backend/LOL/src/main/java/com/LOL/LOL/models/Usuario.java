@@ -1,106 +1,109 @@
 package com.LOL.LOL.models;
 
-import jakarta.persistence.Column;
+import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-public class Usuario {
-    private static final long serialVersionUID = 1L;
+import javax.validation.constraints.NotEmpty;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity
+public class Usuario implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "CPF", unique = true, nullable = false, length = 11)
-    @NotEmpty(message = "O CPF não pode estar vazio")
-    @Size(min = 11, max = 11, message = "O CPF deve ter 11 caracteres")
+	@NotEmpty
     private String cpf;
 
-    @Column(name = "nome", nullable = false, length = 255)
-    @NotEmpty(message = "O nome não pode estar vazio")
+	@NotEmpty
     private String nome;
 
-    @Column(name = "email", unique = true, nullable = false, length = 255)
-    @Email(message = "Email deve ser válido")
-    @NotEmpty(message = "O email não pode estar vazio")
+	@NotEmpty
     private String email;
 
-    @Column(name = "endereco", nullable = false, columnDefinition = "TEXT")
-    @NotEmpty(message = "O endereço não pode estar vazio")
+	@NotEmpty
     private String endereco;
 
-    @Column(name = "telefone", nullable = false, length = 20)
-    @NotEmpty(message = "O telefone não pode estar vazio")
+	@NotEmpty
     private String telefone;
+    
+	@NotEmpty
+    private String tipo;
 
-    @Column(name = "senha", nullable = false, length = 255)
-    @NotEmpty(message = "A senha não pode estar vazia")
+	@NotEmpty
     private String senha;
 
-    // Getters e Setters
+	//Get e setters
+	
+	public Long getId() {
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEndereco() {
+		return endereco;
+	}
 
-    public String getEndereco() {
-        return endereco;
-    }
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public String getTipo() {
+		return tipo;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	
+	
 }
-
