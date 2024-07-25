@@ -12,34 +12,34 @@ import javax.validation.constraints.NotEmpty;
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	private Long id;
 
 	@NotEmpty
-    private String cpf;
+	private String cpf;
 
 	@NotEmpty
-    private String nome;
+	private String nome;
 
 	@NotEmpty
-    private String email;
+	private String email;
 
 	@NotEmpty
-    private String endereco;
+	private String endereco;
 
 	@NotEmpty
-    private String telefone;
-    
-	@NotEmpty
-    private String tipo;
+	private String telefone;
 
 	@NotEmpty
-    private String senha;
+	private String tipo;
 
-	//Get e setters
-	
+	@NotEmpty
+	private String senha;
+
+	// Get e setters
+
 	public Long getId() {
 		return id;
 	}
@@ -103,7 +103,5 @@ public class Usuario implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
-	
+
 }

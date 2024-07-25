@@ -26,7 +26,7 @@ public class Recolhimento implements Serializable {
     private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn(name = "usuarios_id", nullable = false)
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     @Column(name = "data_hora", nullable = false)
