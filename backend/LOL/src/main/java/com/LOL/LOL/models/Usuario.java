@@ -1,106 +1,107 @@
 package com.LOL.LOL.models;
 
-import jakarta.persistence.Column;
+import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-public class Usuario {
-    private static final long serialVersionUID = 1L;
+import javax.validation.constraints.NotEmpty;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Entity
+public class Usuario implements Serializable {
 
-    @Column(name = "CPF", unique = true, nullable = false, length = 11)
-    @NotEmpty(message = "O CPF não pode estar vazio")
-    @Size(min = 11, max = 11, message = "O CPF deve ter 11 caracteres")
-    private String cpf;
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "nome", nullable = false, length = 255)
-    @NotEmpty(message = "O nome não pode estar vazio")
-    private String nome;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "email", unique = true, nullable = false, length = 255)
-    @Email(message = "Email deve ser válido")
-    @NotEmpty(message = "O email não pode estar vazio")
-    private String email;
+	@NotEmpty
+	private String cpf;
 
-    @Column(name = "endereco", nullable = false, columnDefinition = "TEXT")
-    @NotEmpty(message = "O endereço não pode estar vazio")
-    private String endereco;
+	@NotEmpty
+	private String nome;
 
-    @Column(name = "telefone", nullable = false, length = 20)
-    @NotEmpty(message = "O telefone não pode estar vazio")
-    private String telefone;
+	@NotEmpty
+	private String email;
 
-    @Column(name = "senha", nullable = false, length = 255)
-    @NotEmpty(message = "A senha não pode estar vazia")
-    private String senha;
+	@NotEmpty
+	private String endereco;
 
-    // Getters e Setters
+	@NotEmpty
+	private String telefone;
 
-    public Long getId() {
-        return id;
-    }
+	@NotEmpty
+	private String tipo;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@NotEmpty
+	private String senha;
 
-    public String getCpf() {
-        return cpf;
-    }
+	// Get e setters
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getEndereco() {
-        return endereco;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public String getEndereco() {
+		return endereco;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 }
-

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
-import { User } from 'src/app/models/User';
 import { Endereco } from 'src/app/models/Endereco';
 import { Usuario } from 'src/app/models/Usuario';
 

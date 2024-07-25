@@ -19,7 +19,7 @@ CREATE TABLE pecas_roupas (
 
 CREATE TABLE pedidos (
     id SERIAL PRIMARY KEY,
-    cliente_id INTEGER REFERENCES clientes(id),
+    cliente_id INTEGER REFERENCES usuario(id),
     data_hora TIMESTAMP NOT NULL,
     estado VARCHAR(20) NOT NULL,
     total DECIMAL(10, 2) NOT NULL
@@ -42,7 +42,7 @@ CREATE TABLE recolhimentos (
 
 CREATE TABLE enderecos (
     id SERIAL PRIMARY KEY,
-    idCliente INTEGER REFERENCES clientes(id),
+    idCliente INTEGER REFERENCES usuario(id),
     logradouro VARCHAR(255) NOT NULL,
     numero VARCHAR(20) NOT NULL,
     complemento VARCHAR(255),
