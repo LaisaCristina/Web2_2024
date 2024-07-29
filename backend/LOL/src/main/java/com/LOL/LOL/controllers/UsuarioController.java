@@ -19,15 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.LOL.LOL.models.Endereco;
 import com.LOL.LOL.models.Usuario;
 import com.LOL.LOL.repository.UsuarioRepository;
-
+import com.LOL.LOL.repository.EnderecoRepository;
 
 @RestController
 public class UsuarioController {
 
 	 @Autowired
 	private UsuarioRepository ur ;
+	 
+	 @Autowired
+	 private EnderecoRepository er;
 	
 	// CADASTRO 
 	@PostMapping(value = "/cadastrarUsuario")
@@ -41,4 +45,14 @@ public class UsuarioController {
 	    }
 	}
 	
+	@PostMapping(value = "/cadastrarEndereco")
+	public ResponseEntity<Object> inserirEndereco(@RequestBody Endereco endereco){
+	    try {
+	        er.save(endereco);
+	        return ResponseEntity.ok(endereco);
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                             .body("Erro ao cadastrar o usuário: " + e.getMessage());
+	    }		
+	}
 }
