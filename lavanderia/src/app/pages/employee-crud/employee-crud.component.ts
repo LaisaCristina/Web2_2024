@@ -25,79 +25,6 @@ export class EmployeeCrudComponent {
 
   itemEmEdicao: ClothingItem | null = null;
 
-  adicionarNovoItem() {
-    if (
-      this.novoItem.name &&
-      this.novoItem.price &&
-      this.novoItem.deliveryTime
-    ) {
-      console.log('Novo item enviado:', this.novoItem);
-      this.clothingItems.push(this.novoItem);
-
-      this.novoItem = {
-        name: '',
-        price: '',
-        deliveryTime: '',
-      };
-      console.log(this.novoItem);
-      this.listaVazia = this.clothingItems.length === 0;
-    }
-  }
-
-  editItem(item: ClothingItem) {
-    this.itemEmEdicao = { ...item };
-    this.novoItem = { ...item };
-  }
-
-  updateItem() {
-    if (
-      this.itemEmEdicao &&
-      this.itemEmEdicao.name &&
-      this.itemEmEdicao.price &&
-      this.itemEmEdicao.deliveryTime
-    ) {
-      const index = this.clothingItems.findIndex(
-        (item) => item === this.itemEmEdicao,
-      );
-      if (index !== -1) {
-        this.clothingItems[index] = { ...this.itemEmEdicao };
-        this.itemEmEdicao = null;
-      }
-    } else if (
-      this.novoItem.name &&
-      this.novoItem.price &&
-      this.novoItem.deliveryTime
-    ) {
-
-      this.clothingItems.push({ ...this.novoItem });
-      this.novoItem = {
-        name: '',
-        imageUrl: '',
-        price: '',
-        deliveryTime: '',
-      }; 
-    }
-  }
-
-  removeItem(item: ClothingItem) {
-    const index = this.clothingItems.indexOf(item);
-    if (index !== -1) {
-      this.clothingItems.splice(index, 1);
-    }
-
-    this.listaVazia = this.clothingItems.length === 0;
-  }
-
-  cleanForm() {
-    this.itemEmEdicao = null; 
-    this.novoItem = {
-      name: '',
-      imageUrl: '',
-      price: '',
-      deliveryTime: '',
-    };
-  }
-
   clothingItems: ClothingItem[] = [
     {
       name: 'Camiseta',
@@ -121,4 +48,63 @@ export class EmployeeCrudComponent {
       deliveryTime: '4 horas',
     },
   ];
+
+  adicionarNovoItem() {
+    if (
+      this.novoItem.name &&
+      this.novoItem.price &&
+      this.novoItem.deliveryTime
+    ) {
+      this.clothingItems.push({ ...this.novoItem });
+      this.cleanForm();
+      this.listaVazia = this.clothingItems.length === 0;
+    }
+  }
+
+  updateItem() {
+    if (this.itemEmEdicao) {
+      const index = this.clothingItems.findIndex(
+        (item) => item === this.itemEmEdicao
+      );
+      if (index !== -1) {
+        this.clothingItems[index] = { ...this.novoItem };
+        this.itemEmEdicao = null;
+      }
+    }
+    this.cleanForm();
+  }
+
+  editItem(item: ClothingItem) {
+    this.itemEmEdicao = item;
+    this.novoItem = { ...item };
+  }
+
+  removeItem(item: ClothingItem) {
+    const index = this.clothingItems.indexOf(item);
+    if (index !== -1) {
+      this.clothingItems.splice(index, 1);
+    }
+    this.listaVazia = this.clothingItems.length === 0;
+  }
+
+  cleanForm() {
+    this.itemEmEdicao = null;
+    this.novoItem = {
+      name: '',
+      imageUrl: '',
+      price: '',
+      deliveryTime: '',
+    };
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.novoItem.imageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 }

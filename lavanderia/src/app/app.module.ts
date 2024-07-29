@@ -34,6 +34,7 @@ import { ReportIncomeComponent } from './pages/report-income/report-income.compo
 import { ReportLoyalCustomerComponent } from './pages/report-loyal-customer/report-loyal-customer.component';
 import { DateFilterComponent } from './components/date-filter/date-filter.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavBarFuncComponent } from './components/nav-bar-func/nav-bar-func.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -69,7 +70,8 @@ const routes: Routes = [
     ReportCustomerDetailsComponent,
     ReportIncomeComponent,
     ReportLoyalCustomerComponent,
-    DateFilterComponent
+    DateFilterComponent,
+    NavBarFuncComponent
   ],
   imports: [
     BrowserModule,

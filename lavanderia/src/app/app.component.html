@@ -1,2 +1,3 @@
-
+<app-nav-bar *ngIf="userType === 'cliente'"></app-nav-bar>
+<app-nav-bar-func *ngIf="userType === 'funcionario'"></app-nav-bar-func>
 <router-outlet></router-outlet>
