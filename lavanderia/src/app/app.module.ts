@@ -33,6 +33,7 @@ import { ReportCustomerDetailsComponent } from './pages/report-customer-details/
 import { ReportIncomeComponent } from './pages/report-income/report-income.component';
 import { ReportLoyalCustomerComponent } from './pages/report-loyal-customer/report-loyal-customer.component';
 import { DateFilterComponent } from './components/date-filter/date-filter.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -76,7 +77,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

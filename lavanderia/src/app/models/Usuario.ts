@@ -29,21 +29,18 @@ export class Cliente {
 }*/
 
 export interface Usuario {
-  id: number;
 
-  CPF: string;
+  cpf: string;
 
   nome: string;
 
   email: string;
 
-  endereco: number;
-
   telefone: string;
 
-  senha: string;
+  idEndereco: number;
 
-  pedidos: Pedido[];
+  senha: string;
 
   tipo: string;
 }

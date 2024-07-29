@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
 import { Endereco } from 'src/app/models/Endereco';
 import { Usuario } from 'src/app/models/Usuario';
@@ -8,12 +9,16 @@ import { Usuario } from 'src/app/models/Usuario';
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
+
 export class CadastroComponent implements OnInit{
   users: Usuario | undefined;
   endereco: Endereco | undefined;
   userForm: FormGroup = new FormGroup({});
 
-  constructor( private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService // Corrigido: injeção de dependência do serviço
+  ) { }  
   ngOnInit(): void {
     this.initializeForm();
   }
@@ -72,8 +77,13 @@ export class CadastroComponent implements OnInit{
     } else {
       let enderecoCadastrado = this.getDadosEndereco();
       let userCadstrado = this.getDadosUsuario();
-      console.log(enderecoCadastrado);
-      console.log(userCadstrado);
+      this.usuarioService.cadastrarUsuario(userCadstrado).subscribe(
+                                                              (usuario) => {
+                                                                // this.mensagem = `Usuário ${usuario.nome} cadastrado com sucesso!`;
+                                                                // this.usuario = { id: 0, nome: '', email: '' }; // Resetar o formulário
+                                                              },
+                                                              // (erro) => this.mensagem = 'Erro ao cadastrar usuário'
+                                                            );
     }
   }
 
@@ -105,14 +115,12 @@ export class CadastroComponent implements OnInit{
 
   getDadosUsuario(): Usuario{
     let userCad: Usuario = {
-      id: 1,
       telefone: this.userForm.get('telefone')?.value,
       nome: this.userForm.get('nome')?.value,
-      CPF: this.userForm.get('CPF')?.value,
+      cpf: this.userForm.get('CPF')?.value,
       email: this.userForm.get('email')?.value,
       senha: this.userForm.get('senha')?.value,
-      endereco: 1,
-      pedidos: [],
+      idEndereco: 1,
       tipo: 'C'
     }
     return userCad;
