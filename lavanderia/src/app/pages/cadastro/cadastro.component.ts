@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
+import { HttpResponse } from '@angular/common/http';
+
 import { Endereco } from 'src/app/models/Endereco';
 import { Usuario } from 'src/app/models/Usuario';
 
@@ -17,7 +19,7 @@ export class CadastroComponent implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService // Corrigido: injeção de dependência do serviço
+    private usuarioService: UsuarioService,
   ) { }  
   ngOnInit(): void {
     this.initializeForm();
@@ -77,7 +79,8 @@ export class CadastroComponent implements OnInit{
     } else {
       let enderecoCadastrado = this.getDadosEndereco();
       let userCadstrado = this.getDadosUsuario();
-      this.usuarioService.cadastrarUsuario(userCadstrado).subscribe(
+
+      this.usuarioService.cadastrarUsuario(userCadstrado, enderecoCadastrado).subscribe(
                                                               (usuario) => {
                                                                 // this.mensagem = `Usuário ${usuario.nome} cadastrado com sucesso!`;
                                                                 // this.usuario = { id: 0, nome: '', email: '' }; // Resetar o formulário
@@ -103,6 +106,7 @@ export class CadastroComponent implements OnInit{
 
   getDadosEndereco(): Endereco{
     let enderecoCad: Endereco = {
+      id: 0,
       idCliente: 1,
       logradouro: this.userForm.get('logradouro')?.value,
       numero: this.userForm.get('numeroEndereco')?.value,

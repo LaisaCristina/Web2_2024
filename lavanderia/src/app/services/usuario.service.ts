@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError  } from 'rxjs';
 import { Usuario } from '../models/Usuario';
+import { Endereco } from '../models/Endereco';
 
 @Injectable({
   providedIn: 'root'
@@ -35,9 +36,20 @@ export class UsuarioService {
     );
   }
 
-  cadastrarUsuario(usuario: Usuario): Observable<Usuario> {
-    console.log(usuario)
-    return this.httpClient.post<Usuario>(this.BASE_URL+'cadastrarUsuario', JSON.stringify(usuario), this.httpOptions)
+
+  cadastrarEndereco(endereco: Endereco): Observable<Endereco>{
+    return this.httpClient.post<Endereco>(this.BASE_URL+'cadastrarEndereco', JSON.stringify(endereco), this.httpOptions)
+      .pipe(
+        catchError((e) => {
+          console.error('Erro ao criar usuário', e);
+          return throwError(e);
+        })
+      );
+  }
+
+  cadastrarUsuario(usuario: Usuario, endereco: Endereco): Observable<Usuario> {
+    const payload = { usuario, endereco };
+    return this.httpClient.post<Usuario>(this.BASE_URL+'cadastrarUsuario', JSON.stringify(payload), this.httpOptions)
       .pipe(
         catchError((e) => {
           console.error('Erro ao criar usuário', e);

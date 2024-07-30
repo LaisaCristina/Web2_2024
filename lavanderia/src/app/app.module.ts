@@ -71,7 +71,7 @@ const routes: Routes = [
     ReportIncomeComponent,
     ReportLoyalCustomerComponent,
     DateFilterComponent,
-    NavBarFuncComponent
+    NavBarFuncComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,7 @@ import com.LOL.LOL.models.Endereco;
 import com.LOL.LOL.models.Usuario;
 import com.LOL.LOL.repository.UsuarioRepository;
 import com.LOL.LOL.repository.EnderecoRepository;
+import com.LOL.LOL.models.usuarioRequisicao;
 
 @RestController
 public class UsuarioController {
@@ -35,9 +36,18 @@ public class UsuarioController {
 	
 	// CADASTRO 
 	@PostMapping(value = "/cadastrarUsuario")
-	public ResponseEntity<Object> inserir(@RequestBody Usuario usuario) {
+	public ResponseEntity<Object> inserir(@RequestBody usuarioRequisicao requisicao) {
 	    try {
-	        ur.save(usuario);
+	        Usuario usuario = requisicao.getUsuario();
+	        Endereco endereco = requisicao.getEndereco();
+	        
+	        Endereco savedEndereco = er.save(endereco);
+	        usuario.setIdEndereco(savedEndereco.getId());
+	        
+	        Usuario savedUsuario =  ur.save(usuario);
+	        savedEndereco.setUsuario(savedUsuario);
+	        er.save(savedEndereco);
+	        
 	        return ResponseEntity.ok(usuario);
 	    } catch (Exception e) {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
