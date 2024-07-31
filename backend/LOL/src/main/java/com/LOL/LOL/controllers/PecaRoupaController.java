@@ -42,7 +42,7 @@ public class PecaRoupaController {
 		return ResponseEntity.ok(response);
 	    } catch (Exception e) {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                             .body("Erro ao cadastrar o usuário: " + e.getMessage());
+	                             .body("Erro ao cadastrar o roupa: " + e.getMessage());
 	    }	
 	}
 }

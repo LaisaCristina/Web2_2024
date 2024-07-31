@@ -41,13 +41,25 @@ public class PecaRoupa implements Serializable {
     @OneToMany(mappedBy = "roupa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> items;;
     
+    @Column(name = "imagem", nullable = false)
+    @NotEmpty(message = "Roupa sem foto")
+    private String imagem;
+    
     // Getters e Setters
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

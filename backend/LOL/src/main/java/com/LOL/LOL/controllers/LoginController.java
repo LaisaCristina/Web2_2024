@@ -1,7 +1,5 @@
 package com.LOL.LOL.controllers;
 
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
 import javax.validation.Valid;
 
 import org.apache.catalina.mapper.Mapper;
@@ -22,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.LOL.LOL.models.Endereco;
+import com.LOL.LOL.models.Login;
 import com.LOL.LOL.models.Usuario;
 import com.LOL.LOL.repository.UsuarioRepository;
 import com.LOL.LOL.utils.EncryptionUtil;
@@ -29,36 +28,34 @@ import com.LOL.LOL.repository.EnderecoRepository;
 import com.LOL.LOL.models.usuarioRequisicao;
 
 @RestController
-public class UsuarioController {
+public class LoginController {
 
 	 @Autowired
 	private UsuarioRepository ur ;
-	 
-	 @Autowired
-	 private EnderecoRepository er;
 	
-	// CADASTRO 
-	@PostMapping(value = "/cadastrarUsuario")
-	public ResponseEntity<Object> inserir(@RequestBody usuarioRequisicao requisicao) {
-	    try {
-	        Usuario usuario = requisicao.getUsuario();
-	        Endereco endereco = requisicao.getEndereco();
-	        
-	        //// Criptografando a senha
-	        String encryptedPassword = EncryptionUtil.encrypt(usuario.getSenha());
-	        usuario.setSenha(encryptedPassword);
-	        
-	        Endereco savedEndereco = er.save(endereco);
-	        usuario.setIdEndereco(savedEndereco.getId());
-	        
-	        Usuario savedUsuario =  ur.save(usuario);
-	        savedEndereco.setUsuario(savedUsuario);
-	        er.save(savedEndereco);
-	        
-	        return ResponseEntity.ok(usuario);
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                             .body("Erro ao cadastrar o usuário: " + e.getMessage());
-	    }
-	}
+	 @PostMapping(value = "/logar")
+	 public ResponseEntity<Object> logar(@RequestBody Login login) {
+	     try {
+	         Usuario usuario = ur.findByEmail(login.getEmail());
+	         
+	         if (usuario == null) {
+	             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+	                                  .body("Email/Senha Incorreto(s)");
+	         }
+	         
+	         String senhaDescriptografada = EncryptionUtil.decrypt(usuario.getSenha());
+	         
+	         // Comparando senhas
+	         if (login.getSenha().equals(senhaDescriptografada)) {
+	             return ResponseEntity.ok(usuario);
+	         } else {
+	             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+	                                  .body("Email/Senha Incorreto(s)");
+	         }
+	     } catch (Exception e) {
+	         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                              .body("Erro ao processar o login: " + e.getMessage());
+	     }
+	 }
+	
 }

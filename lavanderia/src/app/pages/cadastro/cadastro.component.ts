@@ -75,7 +75,7 @@ export class CadastroComponent implements OnInit{
   submitForm(event: Event){
     event.preventDefault()
     if (this.userForm.invalid){
-      console.log('aaaaaa')
+      console.log('aaaaaa') //TODO trocar isso por uma modal de warning
     } else {
       let enderecoCadastrado = this.getDadosEndereco();
       let userCadstrado = this.getDadosUsuario();
