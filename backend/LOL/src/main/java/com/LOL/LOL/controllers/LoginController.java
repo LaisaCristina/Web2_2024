@@ -33,7 +33,7 @@ public class LoginController {
 	 @Autowired
 	private UsuarioRepository ur ;
 	
-	 @PostMapping(value = "/logar")
+	 @PostMapping(value = "/login")
 	 public ResponseEntity<Object> logar(@RequestBody Login login) {
 	     try {
 	         Usuario usuario = ur.findByEmail(login.getEmail());
