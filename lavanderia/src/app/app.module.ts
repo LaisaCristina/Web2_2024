@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,7 +56,7 @@ const routes: Routes = [
     ModalItemVazioComponent,
     CadastroRoupasComponent,
     FuncVisualizacaoPedidosComponent,
-    ModalItemVazioComponent, 
+    ModalItemVazioComponent,
     HomeEmployeeComponent,
     ConfirmationModalComponent,
     CartComponent,
@@ -76,7 +77,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
