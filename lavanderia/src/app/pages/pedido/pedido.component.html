@@ -8,10 +8,8 @@
                 <button (click)="confirmarPedido()" class="btn btn-primary">Confirmar pedido</button>
             </div>
         </div>
-        <form (ngSubmit)="teste()">
-            <div #containerItens></div>
-        </form>
-        <app-modal-confirmacao *ngIf="isConfirmationModalVisible" (confirmed)="onConfirmed($event)"></app-modal-confirmacao>
+        <div #containerItens></div>
+        <app-modal-confirmacao *ngIf="isConfirmationModalVisible" [pedido]="pedidoResumo" (confirmed)="onConfirmed($event)"></app-modal-confirmacao>
         <app-modal-empty-itens *ngIf="isModalEmptyItens" (confirmed)="onConfirmedEmpty($event)"></app-modal-empty-itens>
         <app-modal-item-vazio *ngIf="isModalItemVazio" (confirmed)="onConfirmedVazio($event)"></app-modal-item-vazio>
     </div>
