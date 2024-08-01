@@ -29,12 +29,13 @@ export class LoginComponent {
   }
   
   login(event: Event) {
+    event.preventDefault;
+
     let login: Login = {
       email: this.userForm.get('email')?.value,
       senha: this.userForm.get('senha')?.value
     }
-    this.usuarioService.login(login);
-    this.router.navigate(['/home']); 
+    this.usuarioService.login(login).subscribe();
   }
 
   cadastro() {
