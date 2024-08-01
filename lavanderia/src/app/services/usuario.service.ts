@@ -44,6 +44,8 @@ export class UsuarioService {
       map((response: HttpResponse<Usuario>) => {
         // Aqui você pode tratar a resposta de sucesso
         console.log('Login bem-sucedido:', response.body);
+        let usu = response.body as Usuario;
+        localStorage.setItem('usuario',JSON.stringify(usu));
         return response.body as Usuario; // Retorna o usuário para quem chama o método
       }),
       catchError((error: HttpErrorResponse) => {

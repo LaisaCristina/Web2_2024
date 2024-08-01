@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
+import { HttpClient, HttpHeaders, HttpResponse,HttpErrorResponse } from '@angular/common/http';
 import { User } from 'src/app/models/User';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Login } from 'src/app/models/Login';
+import { Usuario } from 'src/app/models/Usuario';
 
 @Component({
   selector: 'app-login',
@@ -35,8 +37,23 @@ export class LoginComponent {
       email: this.userForm.get('email')?.value,
       senha: this.userForm.get('senha')?.value
     }
-    this.usuarioService.login(login).subscribe();
+    this.usuarioService.login(login).subscribe({
+      next: (usuario: Usuario) => {
+        if (usuario) {
+          // Usuário autenticado com sucesso, redireciona para /home
+          this.router.navigate(['/home']);
+        } else {
+          // Tratar o caso em que o usuário não é autenticado
+          console.error('Autenticação falhou');
+        }
+      },
+      error: (err: HttpErrorResponse ) => {
+        // Tratar erros de autenticação
+        console.error('Erro de autenticação', err);
+      }
+    });
   }
+
 
   cadastro() {
     this.router.navigate(['/cadastro']); 
