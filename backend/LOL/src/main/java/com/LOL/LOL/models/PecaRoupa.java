@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import javax.persistence.Lob;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -41,6 +42,7 @@ public class PecaRoupa implements Serializable {
     @OneToMany(mappedBy = "roupa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> items;;
     
+    @Lob
     @Column(name = "imagem", nullable = false)
     @NotEmpty(message = "Roupa sem foto")
     private String imagem;

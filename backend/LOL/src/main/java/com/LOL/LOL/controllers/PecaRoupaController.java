@@ -1,5 +1,7 @@
 package com.LOL.LOL.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.catalina.mapper.Mapper;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -45,4 +48,16 @@ public class PecaRoupaController {
 	                             .body("Erro ao cadastrar o roupa: " + e.getMessage());
 	    }	
 	}
+	
+    // GET ALL
+    @GetMapping(value = "/pecasRoupas")
+    public ResponseEntity<Object> getAll() {
+        try {
+            List<PecaRoupa> pecasRoupas = (List<PecaRoupa>) prr.findAll();
+            return ResponseEntity.ok(pecasRoupas);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Erro ao buscar as peças de roupa: " + e.getMessage());
+        }
+    }
 }

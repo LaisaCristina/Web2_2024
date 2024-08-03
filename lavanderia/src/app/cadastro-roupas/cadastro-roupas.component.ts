@@ -43,16 +43,16 @@ export class CadastroRoupasComponent {
     });
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.imagemSelecionada = file;
+onFileSelected(event: any) {
+  const file: File = event.target.files[0];
+  this.imagemSelecionada = file;
 
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.imagemBase64 = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
+  this.compressImage(file, 800, 800, 0.7).then((compressedImage) => {
+    this.imagemBase64 = compressedImage;
+  }).catch(error => {
+    console.error('Error compressing image', error);
+  });
+}
 
   enviarCadastro(event: Event) {
     let roupa: PecaRoupa;
@@ -90,4 +90,62 @@ export class CadastroRoupasComponent {
 
     return roupaCad;
   }
+
+  compressImage(file: File, maxWidth: number, maxHeight: number, quality: number): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event: any) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+  
+          if (!ctx) {
+            reject(new Error('Failed to get 2D context'));
+            return;
+          }
+  
+          let width = img.width;
+          let height = img.height;
+  
+          if (width > height) {
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width = Math.round((width * maxHeight) / height);
+              height = maxHeight;
+            }
+          }
+  
+          canvas.width = width;
+          canvas.height = height;
+          ctx.drawImage(img, 0, 0, width, height);
+  
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onload = () => {
+                  resolve(reader.result as string);
+                };
+                reader.onerror = (error) => reject(error);
+              } else {
+                reject(new Error('Blob creation failed'));
+              }
+            },
+            'image/jpeg',
+            quality
+          );
+        };
+        img.onerror = (error) => reject(error);
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  }  
 }
