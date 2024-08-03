@@ -1,20 +1,11 @@
 <div class="confirmation-modal">
-  <div class="confirmation-modal-content">
-    <h2>Confirmação</h2>
-    <div *ngIf="pedido">
-      <h3>Resumo do Pedido</h3>
-      <p><strong>Valor Total:</strong> {{ pedido.valorTotal | currency: 'BRL' }}</p>
-      <p><strong>Prazo:</strong> {{ pedido.prazo | date: 'dd/MM/yyyy' }}</p>
-      <ul>
-        <li *ngFor="let item of pedido.itens">
-          <p>{{ item.nome }} - {{ item.quantidade }} x {{ item.valor | currency: 'BRL' }}</p>
-        </li>
-      </ul>
-    </div>
-    <div class="buttons">
-      <button class="btn btn-danger" (click)="cancelAction()">Rejeitar Orçamento</button>
-      <button class="btn btn-primary" (click)="confirmAction()">Confirmar Pedido</button>
+    <div class="confirmation-modal-content">
+      <h2>Confirmação</h2>
+      <p>Tem certeza que deseja fazer isso?</p>
+      <div class="buttons">
+        <button (click)="cancelAction()">Cancelar</button>
+        <button (click)="confirmAction()">Confirmar</button>
+      </div>
     </div>
   </div>
-</div>
- 
+  

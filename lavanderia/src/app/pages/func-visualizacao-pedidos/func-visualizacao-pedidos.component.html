@@ -1,4 +1,5 @@
-<app-nav-bar-func/>
+<!-- visualizacao-pedidos.component.html -->
+<app-nav-bar></app-nav-bar>
 <div class="container mt-5">
   <h2>Visualização de Pedidos</h2>
 
@@ -41,8 +42,7 @@
                         'card-green': pedido.estado === 'FINALIZADO'}">
         <div class="card-body">
           <h5 class="card-title">Pedido #{{ pedido.numero }}</h5>
-          <p class="card-text">Data/Hora: {{ pedido.dataHora | date:'dd/MM/yyyy'
-            }}</p>
+          <p class="card-text">Data/Hora: {{ pedido.dataHora }}</p>
           <p class="card-text text-white">Estado: {{ pedido.estado }}</p>
 
           <!-- Botões de Ação -->
