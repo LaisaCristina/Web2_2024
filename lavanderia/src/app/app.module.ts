@@ -35,6 +35,7 @@ import { ReportLoyalCustomerComponent } from './pages/report-loyal-customer/repo
 import { DateFilterComponent } from './components/date-filter/date-filter.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarFuncComponent } from './components/nav-bar-func/nav-bar-func.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -72,6 +73,7 @@ const routes: Routes = [
     ReportLoyalCustomerComponent,
     DateFilterComponent,
     NavBarFuncComponent,
+    PedidosComponent,
   ],
   imports: [
     BrowserModule,

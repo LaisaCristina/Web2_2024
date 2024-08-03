@@ -1,0 +1,21 @@
+<form [formGroup]="pecasForm" (ngSubmit)="onSubmit()">
+  <div class="container mt-4">
+    <div formArrayName="pecas">
+      <div *ngFor="let peca of pecas.controls; let i = index" [formGroupName]="i" class="row mb-3 item-container">
+        <div class="col-md-4 item-image">
+          <img [src]="peca.get('imagem')?.value" alt="Imagem da peça" class="img-fluid" />
+        </div>
+        <div class="col-md-8 item-details">
+          <div class="form-group">
+            <p class="item-description">{{ peca.get('descricao')?.value }}</p>
+            <p class="item-price">Preço: {{ peca.get('preco')?.value | currency }}</p>
+            <p class="item-delivery">Prazo de entrega: {{ peca.get('prazo')?.value }} dias</p>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" formControlName="quantidade" class="form-control item-quantity" min="1" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+  </div>
+</form>

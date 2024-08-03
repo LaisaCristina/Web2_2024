@@ -1,0 +1,39 @@
+.item-container {
+    border: 1px solid #ddd; /* Borda ao redor de cada item */
+    border-radius: 5px; /* Cantos arredondados */
+    padding: 15px; /* Espaçamento interno */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    margin-bottom: 15px; /* Espaçamento entre itens */
+  }
+  
+  .item-image {
+    display: flex; /* Permite que o contêiner ajuste o tamanho da imagem */
+    align-items: center; /* Alinha verticalmente no centro */
+    justify-content: center; /* Alinha horizontalmente no centro */
+    width: 100px; /* Largura fixa */
+    height: 100px; /* Altura fixa */
+    overflow: hidden; /* Garante que a imagem não ultrapasse o contêiner */
+    border-radius: 5px; /* Cantos arredondados */
+  }
+  
+  .item-image img {
+    width: 100%; /* Ajusta a largura da imagem ao contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+  }
+  
+  .item-details {
+    padding-left: 15px; /* Espaçamento entre a imagem e os detalhes */
+  }
+  
+  .item-description {
+    font-weight: bold; /* Destaca a descrição */
+  }
+  
+  .item-price,
+  .item-delivery {
+    margin: 5px 0; /* Espaçamento entre as linhas de texto */
+  }
+  
+  .item-quantity {
+    width: 100%; /* Garante que o campo de quantidade ocupe toda a largura disponível */
+  }

@@ -31,4 +31,12 @@ export class PecaRoupaService {
     );
   }
 
+  getPecaRoupas(): Observable<PecaRoupa[]> {
+    return this.httpClient.get<PecaRoupa[]>(this.BASE_URL + 'pecasRoupas', { ...this.httpOptions, observe: 'response' }).pipe(
+      map((response: HttpResponse<PecaRoupa[]>) => {
+        // Aqui você pode tratar a resposta de sucesso
+        return response.body as PecaRoupa[]; // Retorna o array de PecaRoupa para quem chama o método
+      })
+    );
+  }
 }

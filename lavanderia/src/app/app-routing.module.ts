@@ -14,11 +14,13 @@ import { ReportCustomerComponent } from './pages/report-customer/report-customer
 import { ReportIncomeComponent } from './pages/report-income/report-income.component';
 import { ReportCustomerDetailsComponent } from './pages/report-customer-details/report-customer-details.component';
 import { ReportLoyalCustomerComponent } from './pages/report-loyal-customer/report-loyal-customer.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { loginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'pedidos', component: PedidoComponent},
+  { path: 'pedido', component: PedidosComponent},
   { path: 'home', component: HomeComponent, canActivate: [loginGuard]},
   { path: 'cadastro', component: CadastroComponent},
   { path: 'lista-pedidos', component: ListaPedidosComponent, canActivate: [loginGuard]},

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuarioService } from '../../services/usuario.service';
 import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 
-import { Endereco } from 'src/app/models/Endereco';
-import { Usuario } from 'src/app/models/Usuario';
+import { Endereco } from '../../models/Endereco';
+import { Usuario } from '../../models//Usuario';
 
 @Component({
   selector: 'app-cadastro',
