@@ -18,7 +18,7 @@ public class Endereco {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "idCliente")
+    @JoinColumn(name = "idCliente", nullable = false)
     private Usuario usuario;
 
     @Column(name = "logradouro", nullable = false, length = 255)
@@ -29,6 +29,9 @@ public class Endereco {
 
     @Column(name = "complemento", length = 255)
     private String complemento;
+
+    @Column(name = "bairro", nullable = false, length = 255)
+    private String bairro;
 
     @Column(name = "cidade", nullable = false, length = 255)
     private String cidade;
@@ -73,6 +76,14 @@ public class Endereco {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public String getCidade() {

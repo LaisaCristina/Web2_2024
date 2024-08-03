@@ -1,5 +1,5 @@
-import { Component, ElementRef, Renderer2 } 
-from '@angular/core';import { NgModel,FormsModule } from '@angular/forms';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-item-pedido',
@@ -7,8 +7,10 @@ from '@angular/core';import { NgModel,FormsModule } from '@angular/forms';
   styleUrls: ['./item-pedido.component.css']
 })
 export class ItemPedidoComponent {
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
   qtdIten: number = 0; // Variável para armazenar o valor do input
+  item: any = { nome: '', valor: 0, prazo: new Date() }; // Inicialize com valores padrão
+
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   addIten(event: Event){
     event.preventDefault();

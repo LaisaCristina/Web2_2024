@@ -28,6 +28,5 @@ export interface PecaRoupa {
 
   prazo: number;
 
-  imagem: string;
-
+  itensPedido: ItemPedido[];
 }

@@ -5,104 +5,103 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Usuario implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotEmpty
-    private String cpf;
+	@NotEmpty
+	private String cpf;
 
-    @NotEmpty
-    private String nome;
+	@NotEmpty
+	private String nome;
 
-    @NotEmpty
-    private String email;
+	@NotEmpty
+	private String email;
 
-    @NotNull
-    @JoinColumn(name = "id_endereco") // Nome da coluna de chave estrangeira
-    private Integer idEndereco;
+	@NotEmpty
+	private String endereco;
 
-    @NotEmpty
-    private String telefone;
+	@NotEmpty
+	private String telefone;
 
-    @NotEmpty
-    private String tipo;
+	@NotEmpty
+	private String tipo;
 
-    @NotEmpty
-    private String senha;
+	@NotEmpty
+	private String senha;
 
-    // Getters e Setters
-    public Long getId() {
-        return id;
-    }
+	// Get e setters
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public Integer getIdEndereco() {
-        return idEndereco;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setIdEndereco(Integer idEndereco) {
-        this.idEndereco = idEndereco;
-    }
+	public String getEndereco() {
+		return endereco;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public String getTipo() {
-        return tipo;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+	public String getTipo() {
+		return tipo;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 }
