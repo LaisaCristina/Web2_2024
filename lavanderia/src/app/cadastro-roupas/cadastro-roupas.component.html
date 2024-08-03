@@ -1,13 +1,13 @@
 <div class="container">
   <h2>Cadastro de Peça de Roupa</h2>
-  <form (ngSubmit)="enviarCadastro()">
+  <form [formGroup]="userForm" (ngSubmit)="enviarCadastro($event)">
     <div class="form-group">
       <label for="nome">Nome da Peça:</label>
-      <input type="text" class="form-control" id="nome">
+      <input type="text" class="form-control" formControlName="descricao"  [class.is-invalid] = "userForm.get('descricao')?.errors && userForm.get('descricao')?.touched" id="descricao">
     </div>
     <div class="form-group">
       <label for="preco">Preço:</label>
-      <input type="text" class="form-control" id="preco">
+      <input type="text" class="form-control" formControlName="preco" [class.is-invalid] = "userForm.get('preco')?.errors && userForm.get('preco')?.touched" id="preco">
     </div>
     <div class="form-group">
       <label for="imagem" class="mb-0 mr-2">Selecione uma imagem:</label>
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
       <label for="prazo">Prazo de Entrega:</label>
-      <input type="text" class="form-control" id="prazo">
+      <input type="text" class="form-control" formControlName="prazo" [class.is-invalid] = "userForm.get('prazo')?.errors && userForm.get('prazo')?.touched" id="prazo">
     </div>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
   </form>
