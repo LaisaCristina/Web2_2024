@@ -34,7 +34,6 @@ import { ReportCustomerDetailsComponent } from './pages/report-customer-details/
 import { ReportIncomeComponent } from './pages/report-income/report-income.component';
 import { ReportLoyalCustomerComponent } from './pages/report-loyal-customer/report-loyal-customer.component';
 import { DateFilterComponent } from './components/date-filter/date-filter.component';
-import { HttpClientModule } from '@angular/common/http';
 import { NavBarFuncComponent } from './components/nav-bar-func/nav-bar-func.component';
 
 const routes: Routes = [
@@ -72,7 +71,7 @@ const routes: Routes = [
     ReportIncomeComponent,
     ReportLoyalCustomerComponent,
     DateFilterComponent,
-    NavBarFuncComponent,
+    NavBarFuncComponent
   ],
   imports: [
     BrowserModule,
@@ -81,8 +80,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    CommonModule,
-    HttpClientModule 
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

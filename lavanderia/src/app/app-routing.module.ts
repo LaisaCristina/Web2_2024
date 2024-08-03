@@ -14,16 +14,15 @@ import { ReportCustomerComponent } from './pages/report-customer/report-customer
 import { ReportIncomeComponent } from './pages/report-income/report-income.component';
 import { ReportCustomerDetailsComponent } from './pages/report-customer-details/report-customer-details.component';
 import { ReportLoyalCustomerComponent } from './pages/report-loyal-customer/report-loyal-customer.component';
-import { loginGuard } from './guard/login.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'pedidos', component: PedidoComponent},
-  { path: 'home', component: HomeComponent, canActivate: [loginGuard]},
+  { path: 'home', component: HomeComponent },
   { path: 'cadastro', component: CadastroComponent},
-  { path: 'lista-pedidos', component: ListaPedidosComponent, canActivate: [loginGuard]},
-  {path: 'cadastrar-roupa', component: CadastroRoupasComponent, canActivate: [loginGuard] },
-  {path: 'func-visualizacao-pedidos', component: FuncVisualizacaoPedidosComponent, canActivate: [loginGuard]},
+  { path: 'lista-pedidos', component: ListaPedidosComponent},
+  {path: 'cadastrar-roupa', component: CadastroRoupasComponent},
+  {path: 'func-visualizacao-pedidos', component: FuncVisualizacaoPedidosComponent},
   { path: 'home/employee', component: HomeEmployeeComponent},
   { path: 'employee/crud', component: EmployeeCrudComponent},
   { path: 'employee/maintenance', component: EmployeeMaintenanceComponent},
