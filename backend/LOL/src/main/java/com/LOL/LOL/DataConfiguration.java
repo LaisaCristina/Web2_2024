@@ -12,24 +12,24 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Configuration
 public class DataConfiguration {
 
-	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/LOL?useTimezone=true&serverTimezone=UTC");
-		dataSource.setUsername("root");
-		dataSource.setPassword("root123");
-		return dataSource;
-	}
-	
-	@Bean
-	public JpaVendorAdapter  jpaVendorAdapter() {
-		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		adapter.setDatabase(Database.MYSQL);
-		adapter.setShowSql(true);
-		adapter.setGenerateDdl(true);
-		adapter.setDatabasePlatform("org.hibernate.dialect.MariaDBDialect");
-		adapter.setPrepareConnection(true);
-		return adapter;
-	}
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/LOL?useTimezone=true&serverTimezone=UTC");
+        dataSource.setUsername("root");
+        dataSource.setPassword("admin");
+        return dataSource;
+    }
+    
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setDatabase(Database.MYSQL);
+        adapter.setShowSql(true);
+        adapter.setGenerateDdl(true);
+        adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
+        adapter.setPrepareConnection(true);
+        return adapter;
+    }
 }
