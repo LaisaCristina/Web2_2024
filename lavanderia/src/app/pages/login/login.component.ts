@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
-import { HttpClient, HttpHeaders, HttpResponse,HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { User } from 'src/app/models/User';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Login } from 'src/app/models/Login';
@@ -29,7 +29,7 @@ export class LoginComponent {
       senha: ["", [Validators.required, Validators.maxLength(250)]]
     });
   }
-  
+
   login(event: Event) {
     event.preventDefault;
 
@@ -47,7 +47,7 @@ export class LoginComponent {
           console.error('Autenticação falhou');
         }
       },
-      error: (err: HttpErrorResponse ) => {
+      error: (err: HttpErrorResponse) => {
         // Tratar erros de autenticação
         console.error('Erro de autenticação', err);
       }
@@ -56,6 +56,6 @@ export class LoginComponent {
 
 
   cadastro() {
-    this.router.navigate(['/cadastro']); 
+    this.router.navigate(['/cadastro']);
   }
 }

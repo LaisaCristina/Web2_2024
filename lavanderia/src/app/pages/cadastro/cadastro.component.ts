@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
-import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
+import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { Endereco } from '../../models/Endereco';
 import { Usuario } from '../../models//Usuario';
@@ -12,40 +13,46 @@ import { Usuario } from '../../models//Usuario';
   styleUrls: ['./cadastro.component.css']
 })
 
-export class CadastroComponent implements OnInit{
+export class CadastroComponent implements OnInit {
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
   users: Usuario | undefined;
   endereco: Endereco | undefined;
   userForm: FormGroup = new FormGroup({});
 
+
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
-  ) { }  
+    private router: Router
+  ) { }
+
   ngOnInit(): void {
     this.initializeForm();
   }
 
   //TODO validação das senhas iguais
   //    complemento dos endereços esta como obrigatorio (talvez tirar do formGroup/ nao tratar como campo do formGroup )
-  initializeForm(){
+  initializeForm() {
     this.userForm = this.formBuilder.group({
-      nome: ["",[Validators.required,Validators.maxLength(250)]],
+      nome: ["", [Validators.required, Validators.maxLength(250)]],
       CPF: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('[0-9]*')]],
-      email: ["",[Validators.required,Validators.maxLength(250)]],
-      telefone: ["",[Validators.required,Validators.minLength(10),Validators.maxLength(11),Validators.pattern('[0-9]*')]],
+      email: ["", [Validators.required, Validators.maxLength(250)]],
+      telefone: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(11), Validators.pattern('[0-9]*')]],
 
       //Endereço
-      CEP: ["",[Validators.required,Validators.maxLength(250)]],
-      logradouro: ["",[Validators.required,Validators.maxLength(250)]],
-      numeroEndereco: ["",[Validators.required,Validators.minLength(1), Validators.pattern('[0-9]*')]],
-      complementoEndereco: ["",[Validators.required]],
-      bairroEndereco: ["",[Validators.required,Validators.maxLength(60)]],
-      cidadeEndereco: ["",[Validators.required,Validators.maxLength(60)]],
-      estadoEndereco: ["",[Validators.required,Validators.maxLength(60)]],
+      CEP: ["", [Validators.required, Validators.maxLength(250)]],
+      logradouro: ["", [Validators.required, Validators.maxLength(250)]],
+      numeroEndereco: ["", [Validators.required, Validators.minLength(1), Validators.pattern('[0-9]*')]],
+      complementoEndereco: ["", [Validators.required]],
+      bairroEndereco: ["", [Validators.required, Validators.maxLength(60)]],
+      cidadeEndereco: ["", [Validators.required, Validators.maxLength(60)]],
+      estadoEndereco: ["", [Validators.required, Validators.maxLength(60)]],
 
       //Senha
-      senha: ["",[Validators.required,Validators.minLength(4),Validators.maxLength(4)],Validators.pattern('[0-9]*')],
-      senhaConfirm: ["",[Validators.required, Validators.minLength(4),Validators.maxLength(4)],Validators.pattern('[0-9]*')],
+      senha: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(4)], Validators.pattern('[0-9]*')],
+      senhaConfirm: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(4)], Validators.pattern('[0-9]*')],
     }/*, {
       validator: this.senhaMatchValidator() // Adiciona o validador personalizado aqui
     }*/);
@@ -72,22 +79,31 @@ export class CadastroComponent implements OnInit{
     });
   }
 
-  submitForm(event: Event){
+  submitForm(event: Event) {
     event.preventDefault()
-    if (this.userForm.invalid){
+    if (this.userForm.invalid) {
       console.log('aaaaaa') //TODO trocar isso por uma modal de warning
     } else {
       let enderecoCadastrado = this.getDadosEndereco();
       let userCadstrado = this.getDadosUsuario();
 
       this.usuarioService.cadastrarUsuario(userCadstrado, enderecoCadastrado).subscribe(
-                                                              (usuario) => {
-                                                                // this.mensagem = `Usuário ${usuario.nome} cadastrado com sucesso!`;
-                                                                // this.usuario = { id: 0, nome: '', email: '' }; // Resetar o formulário
-                                                              },
-                                                              // (erro) => this.mensagem = 'Erro ao cadastrar usuário'
-                                                            );
+        (usuario) => {
+          console.log('Usuário cadastrado com sucesso');
+          alert('Usuário cadastrado com sucesso!');
+          this.router.navigate(['/login']);
+        },
+        error => {
+          console.error('Erro ao cadastrar usuário', error);
+        }
+      )
+      // this.mensagem = `Usuário ${usuario.nome} cadastrado com sucesso!`;
+      // this.usuario = { id: 0, nome: '', email: '' }; // Resetar o formulário
+
+      // (erro) => this.mensagem = 'Erro ao cadastrar usuário'
+
     }
+
   }
 
 
@@ -95,16 +111,16 @@ export class CadastroComponent implements OnInit{
     return (control: AbstractControl): { [key: string]: any } | null => {
       const senha = control.get('senha');
       const senhaConfirm = control.get('senhaConfirm');
-  
+
       if (senha && senhaConfirm && senha.value !== senhaConfirm.value) {
         return { senhaMismatch: true };
       }
-  
+
       return null;
     };
   }
 
-  getDadosEndereco(): Endereco{
+  getDadosEndereco(): Endereco {
     let enderecoCad: Endereco = {
       id: 0,
       idCliente: 1,
@@ -117,7 +133,7 @@ export class CadastroComponent implements OnInit{
     return enderecoCad;
   }
 
-  getDadosUsuario(): Usuario{
+  getDadosUsuario(): Usuario {
     let userCad: Usuario = {
       telefone: this.userForm.get('telefone')?.value,
       nome: this.userForm.get('nome')?.value,
