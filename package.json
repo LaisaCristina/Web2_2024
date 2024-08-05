@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@angular/cli": "^16.2.14"
+    "@angular/cli": "^16.2.14",
+    "@angular/forms": "^18.1.3"
   }
 }
