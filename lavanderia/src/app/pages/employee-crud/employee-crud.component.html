@@ -10,16 +10,16 @@
           class="d-flex flex-column bg-white p-4 gap-2 w-25 rounded mr-1 mb-3"
           *ngFor="let item of clothingItems"
         >
-          <h2 class="h5 font-weight-medium text-center">{{ item.name }}</h2>
+          <h2 class="h5 font-weight-medium text-center">{{ item.descricao }}</h2>
           <div class="d-flex justify-content-between align-items-start">
             <div class="d-flex flex-column gap-2">
-              <img
-                [src]="item.imageUrl"
+              <img class="w-100 h-auto fixed-size-image"
+                [src]="item.imagem"
                 alt="imagem do produto"
                 class="w-100 h-auto"
               />
-              <p>Preço: {{ item.price }}</p>
-              <p>Prazo: {{ item.deliveryTime }}</p>
+              <p>Preço: {{ item.preco }}</p>
+              <p>Prazo: {{ item.prazo }}</p>
               <div class="d-flex flex-column gap-2">
                 <button
                   class="btn btn-primary"
@@ -58,19 +58,19 @@
       <input
         class="form-control"
         type="text"
-        [(ngModel)]="novoItem.name"
+        [(ngModel)]="novoItem.descricao"
       />
       <p class="font-weight-medium">Preço individual:</p>
       <input
         class="form-control"
         type="text"
-        [(ngModel)]="novoItem.price"
+        [(ngModel)]="novoItem.preco"
       />
       <p class="font-weight-medium">Prazo de lavagem:</p>
       <input
         class="form-control"
         type="text"
-        [(ngModel)]="novoItem.deliveryTime"
+        [(ngModel)]="novoItem.prazo"
       />
 
       <div class="d-flex align-items-center justify-content-center p-4 rounded bg-light">
@@ -78,8 +78,8 @@
         <input type="file" (change)="onFileChange($event)" />
       </div>
 
-      <div *ngIf="novoItem.imageUrl" class="mt-3">
-        <img [src]="novoItem.imageUrl" alt="Imagem da peça de roupa" class="w-100 h-auto" />
+      <div *ngIf="novoItem.imagem" class="mt-3">
+        <img [src]="novoItem.imagem" alt="Imagem da peça de roupa" class="w-100 h-auto fixed-size-image h-auto" />
       </div>
 
       <div class="d-flex justify-content-between gap-2">
@@ -88,7 +88,7 @@
         </button>
         <button
           class="btn btn-success w-50"
-          (click)="itemEmEdicao ? updateItem() : adicionarNovoItem()"
+          (click)="itemEmEdicao ? updateItem() : adicionarNovoItem($event)"
         >
           Salvar
         </button>
