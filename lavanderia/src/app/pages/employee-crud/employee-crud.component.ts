@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { PecaRoupa } from 'src/app/models/PecaRoupa';
-import { PecaRoupaService } from 'src/app/services/peca-roupa.service';
+
+export interface ClothingItem {
+  name: string;
+  imageUrl?: string;
+  price: string;
+  deliveryTime: string;
+}
 
 @Component({
   selector: 'app-employee-crud',
@@ -8,115 +13,73 @@ import { PecaRoupaService } from 'src/app/services/peca-roupa.service';
 })
 export class EmployeeCrudComponent {
   listaVazia: boolean = false;
-  selectedItem: PecaRoupa | null = null;
+  selectedItem: ClothingItem | null = null;
   selectedIndex: number | null = null;
-  clothingItems: PecaRoupa[] = Array();
 
-
-  constructor(
-    private pecaRoupaService: PecaRoupaService,
-  ) { }  
-  
-  ngOnInit(): void {
-    this.pecaRoupaService.getPecaRoupas().subscribe(
-      (data) => {
-        console.log('Peças de roupa obtidas com sucesso:');
-        console.log(data);
-        this.clothingItems = data;
-      },
-      (error) => {
-        console.error('Erro ao obter as peças de roupa:');
-        console.error(error);
-      }
-    );
-  }
-
-
-  novoItem: PecaRoupa = {
-    id: 0,
-    descricao: '',
-    preco: 0,
-    prazo: 0,
-    imagem: '',
+  novoItem: ClothingItem = {
+    name: '',
+    imageUrl: '',
+    price: '',
+    deliveryTime: '',
   };
 
-  itemEmEdicao: PecaRoupa | null = null;
+  itemEmEdicao: ClothingItem | null = null;
 
-  // adicionarNovoItem() {
-  //   if (
-  //     this.novoItem.descricao &&
-  //     this.novoItem.preco &&
-  //     this.novoItem.prazo
-  //   ) {
-  //     this.clothingItems.push({ ...this.novoItem });
-  //     this.cleanForm();
-  //     this.listaVazia = this.clothingItems.length === 0;
-  //   }
-  // }
+  clothingItems: ClothingItem[] = [
+    {
+      name: 'Camiseta',
+      imageUrl:
+        'https://static.netshoes.com.br/produtos/camiseta-ssb-brand-masculina-lisa-basica-100-algodao/16/70P-0003-016/70P-0003-016_zoom1.jpg?ts=1636498346&ims=544x',
+      price: 'R$ 5.00',
+      deliveryTime: '4 horas',
+    },
+    {
+      name: 'Camiseta',
+      imageUrl:
+        'https://static.netshoes.com.br/produtos/camiseta-ssb-brand-masculina-lisa-basica-100-algodao/16/70P-0003-016/70P-0003-016_zoom1.jpg?ts=1636498346&ims=544x',
+      price: 'R$ 5.00',
+      deliveryTime: '4 horas',
+    },
+    {
+      name: 'Camiseta',
+      imageUrl:
+        'https://static.netshoes.com.br/produtos/camiseta-ssb-brand-masculina-lisa-basica-100-algodao/16/70P-0003-016/70P-0003-016_zoom1.jpg?ts=1636498346&ims=544x',
+      price: 'R$ 5.00',
+      deliveryTime: '4 horas',
+    },
+  ];
 
-  adicionarNovoItem(event: Event) {
-    let roupa: PecaRoupa;
-    // if (this.userForm.invalid){
-    if (false){
-      console.log('aaaaaa') //TODO trocar isso por uma modal de warning
-    } else {
-      console.log(this.novoItem);
-      if (this.novoItem !== null){
-        this.pecaRoupaService.cadastrarRoupa(this.novoItem).subscribe(
-                                                        (roupa) => {
-                                                          // this.mensagem = `Usuário ${usuario.nome} cadastrado com sucesso!`;
-                                                          // this.usuario = { id: 0, nome: '', email: '' }; // Resetar o formulário
-                                                        },
-                                                        // (erro) => this.mensagem = 'Erro ao cadastrar usuário'
-                                                      );
-      }
+  adicionarNovoItem() {
+    if (
+      this.novoItem.name &&
+      this.novoItem.price &&
+      this.novoItem.deliveryTime
+    ) {
+      this.clothingItems.push({ ...this.novoItem });
+      this.cleanForm();
+      this.listaVazia = this.clothingItems.length === 0;
     }
   }
-
 
   updateItem() {
-    // if (this.itemEmEdicao) {
-    //   const index = this.clothingItems.findIndex(
-    //     (item) => item === this.itemEmEdicao
-    //   );
-    //   if (index !== -1) {
-    //     this.clothingItems[index] = { ...this.novoItem };
-    //     this.itemEmEdicao = null;
-    //   }
-    // }
-    // this.cleanForm();
-    
-
-    if (false){
-      console.log('aaaaaa') //TODO trocar isso por uma modal de warning
-    } else {
-      if (this.novoItem !== null){
-        this.pecaRoupaService.updatePecaRoupa(this.novoItem).subscribe(
-                                                        (roupa) => {
-                                                          const index = this.clothingItems.findIndex(
-                                                            (item) => item === this.itemEmEdicao
-                                                          );
-                                                          if (index !== -1) {
-                                                            this.clothingItems[index] = { ...this.novoItem };
-                                                            this.itemEmEdicao = null;
-                                                          }
-                                                          this.cleanForm();
-                                                        },
-                                                        // (erro) => this.mensagem = 'Erro ao cadastrar usuário'
-                                                      );
+    if (this.itemEmEdicao) {
+      const index = this.clothingItems.findIndex(
+        (item) => item === this.itemEmEdicao
+      );
+      if (index !== -1) {
+        this.clothingItems[index] = { ...this.novoItem };
+        this.itemEmEdicao = null;
       }
     }
-
-
+    this.cleanForm();
   }
 
-  editItem(item: PecaRoupa) {
+  editItem(item: ClothingItem) {
     this.itemEmEdicao = item;
-    console.log(this.itemEmEdicao)
     this.novoItem = { ...item };
   }
 
-  removeItem(item: PecaRoupa) {
+  removeItem(item: ClothingItem) {
     const index = this.clothingItems.indexOf(item);
     if (index !== -1) {
       this.clothingItems.splice(index, 1);
@@ -127,11 +90,10 @@ export class EmployeeCrudComponent {
   cleanForm() {
     this.itemEmEdicao = null;
     this.novoItem = {
-      id: 0,
-      descricao: '',
-      preco: 0,
-      prazo: 0,
-      imagem: '',
+      name: '',
+      imageUrl: '',
+      price: '',
+      deliveryTime: '',
     };
   }
 
@@ -140,7 +102,7 @@ export class EmployeeCrudComponent {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.novoItem.imagem = e.target.result;
+        this.novoItem.imageUrl = e.target.result;
       };
       reader.readAsDataURL(file);
     }

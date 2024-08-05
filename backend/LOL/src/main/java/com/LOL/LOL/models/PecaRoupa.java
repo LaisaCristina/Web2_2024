@@ -4,16 +4,18 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Lob;
 
+import jakarta.persistence.Lob;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import jakarta.persistence.GenerationType;
 import java.io.Serializable;
 import java.util.List;
+
 
 @Entity
 @Table(name = "pecas_roupas")
@@ -38,20 +40,28 @@ public class PecaRoupa implements Serializable {
     private Integer prazo;
 
     @OneToMany(mappedBy = "roupa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemPedido> items;
-
+    private List<ItemPedido> items;;
+    
     @Lob
     @Column(name = "imagem", nullable = false)
     @NotEmpty(message = "Roupa sem foto")
     private String imagem;
-
+    
     // Getters e Setters
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 
@@ -64,7 +74,7 @@ public class PecaRoupa implements Serializable {
     }
 
     public Float getPreco() {
-        return preco;
+        return this.preco;
     }
 
     public void setPreco(Float preco) {
@@ -77,21 +87,5 @@ public class PecaRoupa implements Serializable {
 
     public void setPrazo(Integer prazo) {
         this.prazo = prazo;
-    }
-
-    public List<ItemPedido> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemPedido> items) {
-        this.items = items;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
     }
 }
