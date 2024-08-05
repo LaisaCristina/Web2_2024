@@ -49,6 +49,18 @@ public class PecaRoupaController {
 	    }	
 	}
 	
+    // GET ALL
+    @GetMapping(value = "/pecasRoupas")
+    public ResponseEntity<Object> getAll() {
+        try {
+            List<PecaRoupa> pecasRoupas = (List<PecaRoupa>) prr.findAll();
+            return ResponseEntity.ok(pecasRoupas);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Erro ao buscar as peças de roupa: " + e.getMessage());
+        }
+    }
+    
     @PutMapping(value = "/updatePecaRoupa")
     public ResponseEntity<Object> updatePecaRoupa(@RequestBody PecaRoupa roupa){
         try {
