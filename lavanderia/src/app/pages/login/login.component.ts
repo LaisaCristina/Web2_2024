@@ -15,6 +15,8 @@ import { Usuario } from 'src/app/models/Usuario';
 export class LoginComponent {
   users: User | undefined;
   userForm: FormGroup = new FormGroup({});
+  message: string = '';
+  messageType: 'success' | 'error' = 'success';
 
 
   constructor(private router: Router, private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
@@ -40,15 +42,17 @@ export class LoginComponent {
     this.usuarioService.login(login).subscribe({
       next: (usuario: Usuario) => {
         if (usuario) {
-          // Usuário autenticado com sucesso, redireciona para /home
+          this.message = 'Login realizado com sucesso!';
+          this.messageType = 'success';
           this.router.navigate(['/home']);
         } else {
-          // Tratar o caso em que o usuário não é autenticado
-          console.error('Autenticação falhou');
+          this.message = 'Autenticação falhou. Usuário ou senha incorretos.';
+          this.messageType = 'error';
         }
       },
-      error: (err: HttpErrorResponse ) => {
-        // Tratar erros de autenticação
+      error: (err: HttpErrorResponse) => {
+        this.message = 'Erro de autenticação.';
+        this.messageType = 'error';
         console.error('Erro de autenticação', err);
       }
     });

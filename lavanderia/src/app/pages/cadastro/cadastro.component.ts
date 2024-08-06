@@ -5,6 +5,7 @@ import { HttpResponse } from '@angular/common/http';
 
 import { Endereco } from '../../models/Endereco';
 import { Usuario } from '../../models//Usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -16,10 +17,15 @@ export class CadastroComponent implements OnInit{
   users: Usuario | undefined;
   endereco: Endereco | undefined;
   userForm: FormGroup = new FormGroup({});
+  message: string = '';
+  messageType: 'success' | 'error' = 'success';
+  notificationMessage: string | null = null;
+  notificationType: 'success' | 'error' | 'danger' | 'warning' | 'info' = 'success';
 
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
+    private router: Router
   ) { }  
   ngOnInit(): void {
     this.initializeForm();
@@ -74,22 +80,35 @@ export class CadastroComponent implements OnInit{
 
   submitForm(event: Event){
     event.preventDefault()
-    if (this.userForm.invalid){
-      console.log('aaaaaa') //TODO trocar isso por uma modal de warning
+    if (this.userForm.invalid) {
+      this.showNotification('Por favor, preencha todos os campos corretamente.', 'error');
     } else {
       let enderecoCadastrado = this.getDadosEndereco();
       let userCadstrado = this.getDadosUsuario();
 
-      this.usuarioService.cadastrarUsuario(userCadstrado, enderecoCadastrado).subscribe(
-                                                              (usuario) => {
-                                                                // this.mensagem = `Usuário ${usuario.nome} cadastrado com sucesso!`;
-                                                                // this.usuario = { id: 0, nome: '', email: '' }; // Resetar o formulário
-                                                              },
-                                                              // (erro) => this.mensagem = 'Erro ao cadastrar usuário'
-                                                            );
+      this.usuarioService.cadastrarUsuario(userCadstrado, enderecoCadastrado).subscribe({
+        next: (usuario) => {
+          this.showNotification(`Usuário ${usuario.nome} cadastrado com sucesso!`, 'success');
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 2000); // Redireciona após 2 segundos
+        },
+        error: () => {
+          this.message = 'Erro ao cadastrar usuário.';
+          this.messageType = 'error';
+        }
+      });
     }
   }
 
+  showNotification(message: string, type: 'success' | 'error' | 'warning' | 'info') {
+    this.notificationMessage = message;
+    this.notificationType = type;
+  }
+
+  clearNotification() {
+    this.notificationMessage = null;
+  }
 
   senhaMatchValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
