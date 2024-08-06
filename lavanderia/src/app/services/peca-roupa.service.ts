@@ -22,10 +22,11 @@ export class PecaRoupaService {
   private BASE_URL = 'http://localhost:8080/'; // URL da API
 
   cadastrarRoupa(roupa: PecaRoupa): Observable<PecaRoupa>{
+    console.log(roupa);
     return this.httpClient.post<PecaRoupa>(this.BASE_URL+'cadastrarRoupa', JSON.stringify(roupa), this.httpOptions)
     .pipe(
       catchError((e) => {
-        console.error('Erro ao criar usuário', e);
+        console.error('Erro ao cadastrar roupa', e);
         return throwError(e);
       })
     );
@@ -65,5 +66,19 @@ export class PecaRoupaService {
       })
     );
 
+  }
+
+  // Método para deletar uma peça de roupa
+  deletePecaRoupa(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.BASE_URL}deletePecaRoupa/${id}`, this.httpOptions).pipe(
+      map((response: any) => {
+        console.log('Peça de roupa deletada:', response);
+        return response;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Erro ao deletar a peça de roupa:', error.message);
+        return throwError(() => new Error('Falha ao deletar a peça de roupa. Por favor, tente novamente.'));
+      })
+    );
   }
 }

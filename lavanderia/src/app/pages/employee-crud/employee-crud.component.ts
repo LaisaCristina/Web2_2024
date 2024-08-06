@@ -75,17 +75,6 @@ export class EmployeeCrudComponent {
 
 
   updateItem() {
-    // if (this.itemEmEdicao) {
-    //   const index = this.clothingItems.findIndex(
-    //     (item) => item === this.itemEmEdicao
-    //   );
-    //   if (index !== -1) {
-    //     this.clothingItems[index] = { ...this.novoItem };
-    //     this.itemEmEdicao = null;
-    //   }
-    // }
-    // this.cleanForm();
-    
 
     if (false){
       console.log('aaaaaa') //TODO trocar isso por uma modal de warning
@@ -112,16 +101,25 @@ export class EmployeeCrudComponent {
 
   editItem(item: PecaRoupa) {
     this.itemEmEdicao = item;
-    console.log(this.itemEmEdicao)
     this.novoItem = { ...item };
   }
 
   removeItem(item: PecaRoupa) {
-    const index = this.clothingItems.indexOf(item);
+    const index = this.clothingItems.indexOf(item); 
     if (index !== -1) {
-      this.clothingItems.splice(index, 1);
+      this.pecaRoupaService.deletePecaRoupa(item.id).subscribe({
+        next: (response) => {
+          console.log('Peça de roupa deletada com sucesso:', response);
+          this.clothingItems.splice(index, 1);
+          this.listaVazia = this.clothingItems.length === 0;
+          alert(response.message || 'Peça de roupa deletada com sucesso!');
+        },
+        error: (error) => {
+          console.error('Erro ao deletar a peça de roupa:', error.message);
+          alert('Falha ao deletar a peça de roupa. Por favor, tente novamente.');
+        }
+      });
     }
-    this.listaVazia = this.clothingItems.length === 0;
   }
 
   cleanForm() {
