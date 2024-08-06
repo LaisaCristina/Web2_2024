@@ -36,6 +36,8 @@ import { DateFilterComponent } from './components/date-filter/date-filter.compon
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarFuncComponent } from './components/nav-bar-func/nav-bar-func.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { MessageComponent } from './components/message/message.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -74,6 +76,8 @@ const routes: Routes = [
     DateFilterComponent,
     NavBarFuncComponent,
     PedidosComponent,
+    MessageComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
