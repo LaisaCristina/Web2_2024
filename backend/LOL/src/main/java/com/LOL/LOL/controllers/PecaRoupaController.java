@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +59,34 @@ public class PecaRoupaController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body("Erro ao buscar as peças de roupa: " + e.getMessage());
+        }
+    }
+    
+    @PutMapping(value = "/updatePecaRoupa")
+    public ResponseEntity<Object> updatePecaRoupa(@RequestBody PecaRoupa roupa){
+        try {
+           PecaRoupa updatedRoupa = prr.save(roupa);
+           return ResponseEntity.ok(updatedRoupa);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Erro ao buscar as peças de roupa: " + e.getMessage());
+        }
+    }
+    
+    // DELETE
+    @DeleteMapping("/deletePecaRoupa/{id}")
+    public ResponseEntity<Object> deletePecaRoupa(@PathVariable Integer id) {
+        try {
+            if (prr.existsById(id)) {
+                prr.deleteById(id);
+                return ResponseEntity.ok("{\"message\": \"Peça de roupa deletada com sucesso!\"}");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                     .body("{\"message\": \"Peça de roupa não encontrada\"}");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("{\"message\": \"Erro ao deletar a peça de roupa: " + e.getMessage() + "\"}");
         }
     }
 }

@@ -4,7 +4,7 @@ import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Valida
 import { HttpResponse } from '@angular/common/http';
 
 import { Endereco } from '../../models/Endereco';
-import { Usuario } from '../../models//Usuario';
+import { Usuario } from '../../models//Usuario'; 
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,6 +27,7 @@ export class CadastroComponent implements OnInit{
     private usuarioService: UsuarioService,
     private router: Router
   ) { }  
+
   ngOnInit(): void {
     this.initializeForm();
   }
