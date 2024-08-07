@@ -178,10 +178,13 @@
                         </div>
 
                         <div class="d-grid gap-3 d-md-block">
+
                             <button type="submit"
-                                class="btn btn-primary mx-auto">Cadastrar</button>
-                            <a href="login"
-                                class="btn btn-secondary mx-auto">Voltar</a>
+                                class="btn btn-primary">Cadastrar</button>
+
+                            <p *ngIf="message">{{ message }}</p>
+                            <button type="button" class="btn btn-secondary"
+                                (click)="navigateToLogin()">Voltar</button>
                         </div>
 
                     </div>
