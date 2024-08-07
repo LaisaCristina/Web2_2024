@@ -41,7 +41,7 @@ public class PecaRoupa implements Serializable {
     private List<ItemPedido> items;
 
     @Lob
-    @Column(name = "imagem", nullable = false)
+    @Column(name = "imagem", nullable = false, columnDefinition = "LONGTEXT")
     @NotEmpty(message = "Roupa sem foto")
     private String imagem;
 
