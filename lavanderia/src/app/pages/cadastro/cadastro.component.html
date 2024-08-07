@@ -1,18 +1,19 @@
-<app-notification 
-  [message]="notificationMessage" 
-  [type]="notificationType" 
-  (closed)="clearNotification()">
+<app-notification
+    [message]="notificationMessage"
+    [type]="notificationType"
+    (closed)="clearNotification()">
 </app-notification>
 
 <form [formGroup]="userForm" (ngSubmit)="submitForm($event)">
     <app-message [type]="messageType" [message]="message"></app-message>
-    
+
     <div class="container text-center">
         <div class="grid gap-0 row-gap-2">
 
             <div class="col p-2 bd-highlight">
                 <div class="col p-2 flex-grow-1 bd-highlight">
-                    <h4 class="text-primary align-text-bottom">LOL Lavanderia On-Line</h4>
+                    <h4 class="text-primary align-text-bottom">LOL Lavanderia
+                        On-Line</h4>
                 </div>
             </div>
 
@@ -26,25 +27,49 @@
 
                         <div class="row g-3">
                             <div class="col-lg-3 form-floating mb-3">
-                                <input type="text" class="form-control" formControlName="CPF" [class.is-invalid] = "userForm.get('CPF')?.errors && userForm.get('CPF')?.touched" placeholder="CPF (somente números)" id="floatingInputGrid" required>
-                                <label for="floatingInputGrid">CPF (somente números)</label>
+                                <input type="text" class="form-control"
+                                    formControlName="CPF"
+                                    [class.is-invalid]="userForm.get('CPF')?.errors && userForm.get('CPF')?.touched"
+                                    placeholder="CPF (somente números)"
+                                    id="floatingInputGrid" required>
+                                <label for="floatingInputGrid">CPF (somente
+                                    números)</label>
                             </div>
 
                             <div class="col-lg-9 form-floating mb-3">
-                                <input type="text" class="form-control" formControlName="nome" [class.is-invalid] = "userForm.get('nome')?.errors && userForm.get('nome')?.touched" placeholder="CPF (somente números)" id="floatingInputGrid" placeholder="Nome completo (sem abreviações)" required>
-                                <label for="floatingInputGrid">Nome completo (sem abreviações)</label>
+                                <input type="text" class="form-control"
+                                    formControlName="nome"
+                                    [class.is-invalid]="userForm.get('nome')?.errors && userForm.get('nome')?.touched"
+                                    placeholder="CPF (somente números)"
+                                    id="floatingInputGrid"
+                                    placeholder="Nome completo (sem abreviações)"
+                                    required>
+                                <label for="floatingInputGrid">Nome completo
+                                    (sem abreviações)</label>
                             </div>
                         </div>
 
                         <div class="row g-3">
                             <div class="col-lg-6 form-floating mb-3">
-                                <input type="email" class="form-control" formControlName="email" [class.is-invalid] = "userForm.get('email')?.errors && userForm.get('email')?.touched" placeholder="CPF (somente números)" id="floatingInputGrid" placeholder="E-mail" required>
+                                <input type="email" class="form-control"
+                                    formControlName="email"
+                                    [class.is-invalid]="userForm.get('email')?.errors && userForm.get('email')?.touched"
+                                    placeholder="CPF (somente números)"
+                                    id="floatingInputGrid" placeholder="E-mail"
+                                    required>
                                 <label for="floatingInputGrid">E-mail</label>
                             </div>
 
                             <div class="col-lg-6 form-floating mb-3">
-                                <input type="tel" class="form-control" formControlName="telefone" [class.is-invalid] = "userForm.get('telefone')?.errors && userForm.get('telefone')?.touched" placeholder="CPF (somente números)" id="floatingInputGrid" placeholder="Telefone com DDD (somente números)" required>
-                                <label for="floatingInputGrid">Telefone com DDD (somente números)</label>
+                                <input type="tel" class="form-control"
+                                    formControlName="telefone"
+                                    [class.is-invalid]="userForm.get('telefone')?.errors && userForm.get('telefone')?.touched"
+                                    placeholder="CPF (somente números)"
+                                    id="floatingInputGrid"
+                                    placeholder="Telefone com DDD (somente números)"
+                                    required>
+                                <label for="floatingInputGrid">Telefone com DDD
+                                    (somente números)</label>
                             </div>
                         </div>
 
@@ -52,39 +77,70 @@
 
                         <div class="row g-3">
                             <div class="col-lg-2 form-floating mb-3">
-                                <input type="text" class="form-control" formControlName="CEP" [class.is-invalid] = "userForm.get('CEP')?.errors && userForm.get('CEP')?.touched" id="validationCustom05" placeholder="CEP" required>
+                                <input type="text" class="form-control"
+                                    formControlName="CEP"
+                                    [class.is-invalid]="userForm.get('CEP')?.errors && userForm.get('CEP')?.touched"
+                                    id="validationCustom05" placeholder="CEP"
+                                    required>
                                 <label for="validationCustom05">CEP</label>
                             </div>
 
                             <div class="col-lg-6 form-floating mb-3">
-                                <input type="text" class="form-control" formControlName="logradouro" [class.is-invalid] = "userForm.get('logradouro')?.errors && userForm.get('logradouro')?.touched"id="floatingInputGrid" placeholder="Logradouro" required>
-                                <label for="floatingInputGrid">Logradouro</label>
+                                <input type="text" class="form-control"
+                                    formControlName="logradouro"
+                                    [class.is-invalid]="userForm.get('logradouro')?.errors && userForm.get('logradouro')?.touched"
+                                    id="floatingInputGrid"
+                                    placeholder="Logradouro" required>
+                                <label
+                                    for="floatingInputGrid">Logradouro</label>
                             </div>
 
                             <div class="col-lg-2 form-floating mb-3">
-                                <input type="text" class="form-control" formControlName="numeroEndereco" [class.is-invalid] = "userForm.get('numeroEndereco')?.errors && userForm.get('numeroEndereco')?.touched" id="floatingInputGrid" placeholder="Número" required>
+                                <input type="text" class="form-control"
+                                    formControlName="numeroEndereco"
+                                    [class.is-invalid]="userForm.get('numeroEndereco')?.errors && userForm.get('numeroEndereco')?.touched"
+                                    id="floatingInputGrid" placeholder="Número"
+                                    required>
                                 <label for="floatingInputGrid">Número</label>
                             </div>
 
                             <div class="col-lg-2 form-floating mb-3">
-                                <input type="text" class="form-control" formControlName="complementoEndereco" [class.is-invalid] = "userForm.get('complementoEndereco')?.errors && userForm.get('complementoEndereco')?.touched" id="floatingInputGrid" id="floatingInputGrid" placeholder="Complemento" required>
-                                <label for="floatingInputGrid">Complemento</label>
+                                <input type="text" class="form-control"
+                                    formControlName="complementoEndereco"
+                                    [class.is-invalid]="userForm.get('complementoEndereco')?.errors && userForm.get('complementoEndereco')?.touched"
+                                    id="floatingInputGrid"
+                                    id="floatingInputGrid"
+                                    placeholder="Complemento" required>
+                                <label
+                                    for="floatingInputGrid">Complemento</label>
                             </div>
                         </div>
 
                         <div class="row g-3">
                             <div class="col-lg-6 form-floating mb-3">
-                                <input type="text" class="form-control" formControlName="bairroEndereco"  [class.is-invalid] = "userForm.get('bairroEndereco')?.errors && userForm.get('bairroEndereco')?.touched" id="floatingInputGrid" placeholder="Bairro" required>
+                                <input type="text" class="form-control"
+                                    formControlName="bairroEndereco"
+                                    [class.is-invalid]="userForm.get('bairroEndereco')?.errors && userForm.get('bairroEndereco')?.touched"
+                                    id="floatingInputGrid" placeholder="Bairro"
+                                    required>
                                 <label for="floatingInputGrid">Bairro</label>
                             </div>
 
                             <div class="col-lg-4 form-floating mb-3">
-                                <input type="text" class="form-control" formControlName="cidadeEndereco"  [class.is-invalid] = "userForm.get('cidadeEndereco')?.errors && userForm.get('cidadeEndereco')?.touched" id="floatingInputGrid" placeholder="Cidade" required>
+                                <input type="text" class="form-control"
+                                    formControlName="cidadeEndereco"
+                                    [class.is-invalid]="userForm.get('cidadeEndereco')?.errors && userForm.get('cidadeEndereco')?.touched"
+                                    id="floatingInputGrid" placeholder="Cidade"
+                                    required>
                                 <label for="floatingInputGrid">Cidade</label>
                             </div>
 
                             <div class="col-lg-2 form-floating mb-3">
-                                <select class="form-select" formControlName="estadoEndereco" [class.is-invalid] = "userForm.get('estadoEndereco')?.errors && userForm.get('estadoEndereco')?.touched" id="floatingSelect" aria-label="Floating label select example">
+                                <select class="form-select"
+                                    formControlName="estadoEndereco"
+                                    [class.is-invalid]="userForm.get('estadoEndereco')?.errors && userForm.get('estadoEndereco')?.touched"
+                                    id="floatingSelect"
+                                    aria-label="Floating label select example">
                                     <option selected>Selecione</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -97,7 +153,8 @@
                                     <option value="GO">Goiás</option>
                                     <option value="MA">Maranhão</option>
                                     <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MS">Mato Grosso do
+                                        Sul</option>
                                     <option value="MG">Minas Gerais</option>
                                     <option value="PA">Pará</option>
                                     <option value="PB">Paraíba</option>
@@ -105,8 +162,10 @@
                                     <option value="PE">Pernambuco</option>
                                     <option value="PI">Piauí</option>
                                     <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RN">Rio Grande do
+                                        Norte</option>
+                                    <option value="RS">Rio Grande do
+                                        Sul</option>
                                     <option value="RO">Rondônia</option>
                                     <option value="RR">Roraima</option>
                                     <option value="SC">Santa Catarina</option>
@@ -118,29 +177,17 @@
                             </div>
                         </div>
 
-                        <h6 class="card-text align-content-center">Cadastre uma senha:</h6>
-
-                        <div class="row g-3">
-                            <div class="col-lg-3 form-floating mb-3">
-                                <input type="password" class="form-control" formControlName="senha" [class.is-invalid] = "userForm.get('senha')?.errors && userForm.get('senha')?.touched" id="floatingInputGrid" placeholder="Senha (4 números)" required>
-                                <label for="floatingInputGrid">Senha (4 números)</label>
-                            </div>
-
-                            <div class="col-lg-3 form-floating mb-3">
-                                <input type="password" class="form-control" formControlName="senhaConfirm" [class.is-invalid] = "userForm.get('senhaConfirm')?.errors && userForm.get('senhaConfirm')?.touched" id="floatingInputGrid" placeholder="Confirme a senha" required>
-                                <label for="floatingInputGrid">Confirme a senha</label>
-                            </div>
-                        </div>
-
                         <div class="d-grid gap-3 d-md-block">
-                            <button type="submit" class="btn btn-primary mx-auto">Cadastrar</button>
-                            <a href="login" class="btn btn-secondary mx-auto">Voltar</a>
+                            <button type="submit"
+                                class="btn btn-primary mx-auto">Cadastrar</button>
+                            <a href="login"
+                                class="btn btn-secondary mx-auto">Voltar</a>
                         </div>
 
                     </div>
                 </div>
-            </div> 
+            </div>
 
         </div>
-    </div> 
+    </div>
 </form>

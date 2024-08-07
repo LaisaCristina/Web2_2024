@@ -1,6 +1,5 @@
 package com.LOL.LOL.models;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +31,9 @@ public class Endereco {
 
     @Column(name = "cidade", nullable = false, length = 255)
     private String cidade;
+
+    @Column(name = "cep", nullable = false, length = 20)
+    private String cep;
 
     // getters and setters
 
@@ -81,5 +83,13 @@ public class Endereco {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }

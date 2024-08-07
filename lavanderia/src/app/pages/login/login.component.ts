@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { User } from 'src/app/models/User';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Login } from 'src/app/models/Login';
 import { Usuario } from 'src/app/models/Usuario';
