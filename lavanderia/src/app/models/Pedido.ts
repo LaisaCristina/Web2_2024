@@ -32,9 +32,9 @@ import { ItemPedido } from "./ItemPedido";
 import { Recolhimento } from "./Recolhimento";
 
 export interface Pedido {
-  id: number;
+  id?: number;
 
-  Usuario: Usuario;
+  usuario: Usuario;
 
   dataHora: Date;
 
@@ -42,7 +42,7 @@ export interface Pedido {
 
   total: number;
 
-  itensPedido: ItemPedido[];
+  itens: ItemPedido[];
 
-  recolhimentos: Recolhimento[];
+  recolhimentos?: Recolhimento[];
 }
