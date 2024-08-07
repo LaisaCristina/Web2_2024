@@ -39,6 +39,7 @@ import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { MessageComponent } from './components/message/message.component';
 import { NotificationComponent } from './components/notification/notification.component';
 
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
 ];
@@ -60,7 +61,7 @@ const routes: Routes = [
     ModalItemVazioComponent,
     CadastroRoupasComponent,
     FuncVisualizacaoPedidosComponent,
-    ModalItemVazioComponent, 
+    ModalItemVazioComponent,
     HomeEmployeeComponent,
     ConfirmationModalComponent,
     CartComponent,
@@ -86,7 +87,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    HttpClientModule 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
