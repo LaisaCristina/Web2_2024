@@ -29,9 +29,11 @@ export interface Funcionario {
 
   email: string;
 
-  dataNascimento: Date;
+  dataNascimento: string;
 
   senha: string;
 
   recolhimentos: Recolhimento[];
+
+  tipo: string
 }
