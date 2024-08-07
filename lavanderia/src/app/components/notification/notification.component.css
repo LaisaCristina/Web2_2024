@@ -1,0 +1,24 @@
+.modal.show.d-block {
+  background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
+  z-index: 1050; /* Z-index para garantir que esteja acima de outros elementos */
+}
+
+.modal-header.bg-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.modal-header.bg-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.modal-header.bg-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.modal-header.bg-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}

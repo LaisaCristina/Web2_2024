@@ -1,6 +1,8 @@
 package com.LOL.LOL.models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,6 +42,10 @@ public class Usuario implements Serializable {
 
     @NotEmpty
     private String senha;
+    
+    @NotEmpty
+    private LocalDate dataNascimento;
+
 
     // Getters e Setters
     public Long getId() {
@@ -104,5 +110,13 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public LocalDate getDataNascimento () {
+        return dataNascimento;
+    }
+    
+    public LocalDate setDataNascimento (LocalDate dataNascimento) {
+        return this.dataNascimento = dataNascimento;
     }
 }
