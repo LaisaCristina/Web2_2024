@@ -22,25 +22,27 @@ export class Cliente {
   telefone: string;
 
   @Column()
-  senha: string;
+  senha?: string;
 
   @OneToMany(() => Pedido, pedido => pedido.cliente)
   pedidos: Pedido[];
 }*/
 
 export interface Usuario {
-
   cpf: string;
-
   nome: string;
-
   email: string;
-
   telefone: string;
-
   idEndereco: number;
-
   senha: string;
+  tipo: string;
+}
 
+export interface UsuarioCadastro {
+  telefone: string;
+  nome: string;
+  cpf: string;
+  email: string;
+  idEndereco: number;
   tipo: string;
 }
