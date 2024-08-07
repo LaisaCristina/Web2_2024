@@ -1,5 +1,6 @@
 package com.LOL.LOL.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -15,6 +16,7 @@ public class ItemPedido implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)
+    @JsonBackReference
     private Pedido pedido;
 
     @ManyToOne

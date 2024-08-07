@@ -26,10 +26,9 @@ public class PedidoController {
         System.out.println(pedido.toString());
         
         if (pedido.getItens() == null) {
-            pedido.setItens(new ArrayList<>()); // Inicializa a lista de itens se estiver nula
+            pedido.setItens(new ArrayList<>());
         }
 
-        // Assegure-se de que cada ItemPedido esteja associado ao Pedido
         for (ItemPedido item : pedido.getItens()) {
             item.setPedido(pedido);
         }

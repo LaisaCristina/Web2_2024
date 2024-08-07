@@ -47,7 +47,7 @@ export class PedidosComponent implements OnInit {
 
   onSubmit(): void {
     const itensPedido: ItemPedido[] = this.pecasForm.value.pecas.map((peca: any) => ({
-      pecaRoupa: {
+      roupa: {
         id: peca.id,
         descricao: peca.descricao,
         preco: peca.preco,
@@ -75,6 +75,6 @@ export class PedidosComponent implements OnInit {
   }
 
   private calculateTotal(itensPedido: ItemPedido[]): number {
-    return itensPedido.reduce((total, item) => total + (item.pecaRoupa.preco * item.qtde), 0);
+    return itensPedido.reduce((total, item) => total + (item.roupa.preco * item.qtde), 0);
   }
 }

@@ -25,7 +25,7 @@ export interface ItemPedido {
 
   pedido: Pedido;
 
-  pecaRoupa: PecaRoupa;
+  roupa: PecaRoupa;
 
   qtde: number;
 
