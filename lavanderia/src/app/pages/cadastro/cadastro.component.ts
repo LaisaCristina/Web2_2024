@@ -15,7 +15,6 @@ import { Usuario } from '../../models//Usuario';
 })
 
 export class CadastroComponent implements OnInit {
-
   users: Usuario | undefined;
   endereco: Endereco | undefined;
   userForm: FormGroup = new FormGroup({});
@@ -27,6 +26,7 @@ export class CadastroComponent implements OnInit {
   navigateToLogin() {
     this.router.navigate(['/login']);
   }
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -100,6 +100,7 @@ export class CadastroComponent implements OnInit {
         }
       });
     }
+
   }
 
   showNotification(message: string, type: 'success' | 'error' | 'warning' | 'info') {
