@@ -42,10 +42,9 @@ public class Usuario implements Serializable {
 
     @NotEmpty
     private String senha;
-    
+
     @NotEmpty
     private LocalDate dataNascimento;
-
 
     // Getters e Setters
     public Long getId() {
@@ -112,11 +111,11 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public LocalDate getDataNascimento () {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
-    
-    public LocalDate setDataNascimento (LocalDate dataNascimento) {
+
+    public LocalDate setDataNascimento(LocalDate dataNascimento) {
         return this.dataNascimento = dataNascimento;
     }
 }
