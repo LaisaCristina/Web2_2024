@@ -25,9 +25,8 @@ export interface ItemPedido {
 
   pedido: Pedido;
 
-  pecaRoupa: PecaRoupa;
+  roupa: PecaRoupa;
 
-  quantidade: number;
+  qtde: number;
 
-  precoUnitario: number;
 }

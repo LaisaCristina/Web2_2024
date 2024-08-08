@@ -37,11 +37,8 @@ public class PecaRoupa implements Serializable {
     @NotNull(message = "O prazo não pode estar vazio")
     private Integer prazo;
 
-    @OneToMany(mappedBy = "roupa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemPedido> items;
-
     @Lob
-    @Column(name = "imagem", nullable = false)
+    @Column(name = "imagem", nullable = false, columnDefinition = "LONGTEXT")
     @NotEmpty(message = "Roupa sem foto")
     private String imagem;
 
@@ -79,13 +76,6 @@ public class PecaRoupa implements Serializable {
         this.prazo = prazo;
     }
 
-    public List<ItemPedido> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemPedido> items) {
-        this.items = items;
-    }
 
     public String getImagem() {
         return imagem;
