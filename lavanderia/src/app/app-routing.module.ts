@@ -19,7 +19,7 @@ import { loginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'pedidos', component: PedidoComponent},
+  { path: 'pedidos', component: PedidosComponent},
   { path: 'pedido', component: PedidosComponent},
   { path: 'home', component: HomeComponent, canActivate: [loginGuard]},
   { path: 'cadastro', component: CadastroComponent},

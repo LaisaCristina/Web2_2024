@@ -1,4 +1,11 @@
+<app-notification 
+  [message]="notificationMessage" 
+  [type]="notificationType" 
+  (closed)="clearNotification()">
+</app-notification>
+
 <form [formGroup]="pecasForm" (ngSubmit)="onSubmit()">
+  <app-message [type]="messageType" [message]="message"></app-message>
   <div class="container mt-4">
     <div formArrayName="pecas">
       <div *ngFor="let peca of pecas.controls; let i = index" [formGroupName]="i" class="row mb-3 item-container">

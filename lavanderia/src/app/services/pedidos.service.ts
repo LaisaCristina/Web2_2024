@@ -36,4 +36,19 @@ export class PedidosService {
       })
     );
   }
+
+  getPedidos(): Observable<Pedido[]> {
+    return this.httpClient.get<Pedido[]>(this.BASE_URL + 'pedidos', { ...this.httpOptions, observe: 'response' }).pipe(
+      map((response: HttpResponse<Pedido[]>) => {
+        // Aqui você pode tratar a resposta de sucesso
+        console.log('RESPOSTA:', response.body);
+        return response.body as Pedido[]; // Retorna o array de Pedido para quem chama o método
+      }),
+      catchError((error: HttpErrorResponse) => {
+        // Aqui você pode tratar os erros
+        console.error('Erro ao obter os pedidos:', error.message);
+        return throwError(() => new Error('Falha ao obter os pedidos. Por favor, tente novamente.'));
+      })
+    );
+  }
 }
