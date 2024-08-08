@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../../services/usuario.service';
 import { UsuarioCadastro } from 'src/app/models/Usuario';
-import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
-import { HttpResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 import { Endereco } from '../../models/Endereco';
 import { Usuario } from '../../models//Usuario';
+import { EmailService } from '../../services/email.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -19,6 +20,7 @@ export class CadastroComponent implements OnInit {
   endereco: Endereco | undefined;
   userForm: FormGroup = new FormGroup({});
   message: string = '';
+  base_URL = 'http://localhost:8080/auth/register';
   messageType: 'success' | 'error' = 'success';
   notificationMessage: string | null = null;
   notificationType: 'success' | 'error' | 'danger' | 'warning' | 'info' = 'success';
@@ -30,15 +32,16 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService,
-    private router: Router
+    private authService: AuthService,
+    private emailService: EmailService,
+    private router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
     this.initializeForm();
   }
 
-  //    complemento dos endereços esta como obrigatorio (talvez tirar do formGroup/ nao tratar como campo do formGroup )
   initializeForm() {
     this.userForm = this.formBuilder.group({
       nome: ["", [Validators.required, Validators.maxLength(250)]],
@@ -80,27 +83,27 @@ export class CadastroComponent implements OnInit {
   }
 
   submitForm(event: Event) {
-    event.preventDefault()
+    event.preventDefault();
+
     if (this.userForm.invalid) {
       this.showNotification('Por favor, preencha todos os campos corretamente.', 'error');
     } else {
-      let enderecoCadastrado = this.getDadosEndereco();
-      let userCadstrado = this.getDadosUsuario();
+      const email = this.userForm.get('email')?.value;
 
-      this.usuarioService.cadastrarUsuario(userCadstrado, enderecoCadastrado).subscribe({
-        next: (usuario) => {
-          this.showNotification(`Usuário ${usuario.nome} cadastrado com sucesso!`, 'success');
-          setTimeout(() => {
-            this.router.navigate(['/login']);
-          }, 2000); // Redireciona após 2 segundos
+      let enderecoCadastrado = this.getDadosEndereco();
+      let userCadastrado = this.getDadosUsuario();
+
+      this.http.post(this.base_URL, { email }).subscribe({
+        next: (response: any) => {
+          this.message = 'Uma senha foi enviada para o seu e-mail.';
+          this.router.navigate(['/login']);
         },
-        error: () => {
-          this.message = 'Erro ao cadastrar usuário.';
-          this.messageType = 'error';
+        error: (error) => { // Correção na sintaxe do tratamento de erro
+          console.error('Erro ao cadastrar', error);
+          this.message = 'Erro ao cadastrar. Tente novamente.';
         }
       });
     }
-
   }
 
   showNotification(message: string, type: 'success' | 'error' | 'warning' | 'info') {
@@ -111,7 +114,6 @@ export class CadastroComponent implements OnInit {
   clearNotification() {
     this.notificationMessage = null;
   }
-
 
   getDadosEndereco(): Endereco {
     let enderecoCad: Endereco = {
@@ -139,10 +141,15 @@ export class CadastroComponent implements OnInit {
     };
   }
 
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
