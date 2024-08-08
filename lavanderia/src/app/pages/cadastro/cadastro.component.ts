@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../../services/usuario.service';
 import { UsuarioCadastro } from 'src/app/models/Usuario';
-import { AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
-import { HttpResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -22,7 +20,7 @@ export class CadastroComponent implements OnInit {
   endereco: Endereco | undefined;
   userForm: FormGroup = new FormGroup({});
   message: string = '';
-  base_URL = 'http://localhost:8080';
+  base_URL = 'http://localhost:8080/auth/register';
   messageType: 'success' | 'error' = 'success';
   notificationMessage: string | null = null;
   notificationType: 'success' | 'error' | 'danger' | 'warning' | 'info' = 'success';
@@ -85,50 +83,28 @@ export class CadastroComponent implements OnInit {
   }
 
   submitForm(event: Event) {
-    event.preventDefault()
+    event.preventDefault();
+
     if (this.userForm.invalid) {
       this.showNotification('Por favor, preencha todos os campos corretamente.', 'error');
     } else {
       const email = this.userForm.get('email')?.value;
-      const randomPassword = this.generateRandomPassword();
 
       let enderecoCadastrado = this.getDadosEndereco();
-      let userCadstrado = this.getDadosUsuario();
+      let userCadastrado = this.getDadosUsuario();
 
-      this.authService.register(email, randomPassword).subscribe(
-        response => {
-          this.emailService.sendEmail(email, randomPassword).subscribe(
-            emailResponse => {
-              alert('Cadastro realizado com sucesso. Verifique seu e-mail para a senha.');
-            },
-            emailError => {
-              alert('Erro ao enviar e-mail.');
-            }
-          );
+      this.http.post(this.base_URL, { email }).subscribe({
+        next: (response: any) => {
+          this.message = 'Uma senha foi enviada para o seu e-mail.';
+          this.router.navigate(['/login']);
         },
-        registerError => {
-          alert('Erro ao cadastrar usuário.');
+        error: (error) => { // Correção na sintaxe do tratamento de erro
+          console.error('Erro ao cadastrar', error);
+          this.message = 'Erro ao cadastrar. Tente novamente.';
         }
-      );
+      });
     }
   }
-
-
-  //   this.http.post(this.base_URL, this.users).subscribe({
-  //    next: (response: any) => {
-  //       this.message = 'Uma senha foi enviada para o seu e-mail.';
-  //        this.router.navigate(['/login']);
-  //      },
-  //      error: (error) => {
-  //        console.error('Erro ao cadastrar', error);
-  //        this.message = 'Erro ao cadastrar. Tente novamente.';
-  //      }
-  //    });
-
-  generateRandomPassword(): string {
-    return Math.floor(1000 + Math.random() * 9000).toString();
-  }
-
 
   showNotification(message: string, type: 'success' | 'error' | 'warning' | 'info') {
     this.notificationMessage = message;
@@ -138,7 +114,6 @@ export class CadastroComponent implements OnInit {
   clearNotification() {
     this.notificationMessage = null;
   }
-
 
   getDadosEndereco(): Endereco {
     let enderecoCad: Endereco = {
@@ -166,8 +141,8 @@ export class CadastroComponent implements OnInit {
     };
   }
 
-
 }
+
 
 
 
